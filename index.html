@@ -102,16 +102,7 @@
 .scrollbars-visible-always .markdown-preview pre.editor-colors:hover::shadow .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors:hover::shadow .horizontal-scrollbar { visibility: visible; }
 .markdown-preview.markdown-preview.post pre, .markdown-preview.markdown-preview.post code, .markdown-preview.markdown-preview.post tt { font-style: normal; font-variant: normal; font-weight: normal; font-stretch: normal; font-size: 0.8em; font-family: 'lucida console', monospace; line-height: 1.5; }
 .markdown-preview.markdown-preview code { padding: 2px 4px; color: rgb(249, 38, 114); white-space: nowrap; border: 1px solid rgb(89, 89, 89); }
-.markdown-preview.markdown-preview h4 { color: rgb(137, 189, 255); }
-.bracket-matcher .region {
-  border-bottom: 1px dotted lime;
-  position: absolute;
-}
-
-.spell-check-misspelling .region {
-  border-bottom: 2px dotted rgba(255, 51, 51, 0.75);
-}
-
+.markdown-preview.markdown-preview h4, .markdown-preview.markdown-preview h5, .markdown-preview.markdown-preview h6 { color: rgb(137, 189, 255); }
 .pre.editor-colors .gutter .go-plus-error {
   color: #ff6347;
 }
@@ -142,6 +133,22 @@
 }
 .highlight.definition .region {
   background-color: #31363f;
+}
+
+.markdown-themeable-pdf-page-break {
+  border-top: 2px dotted #0098ff;
+}
+.markdown-themeable-pdf-page-break span {
+  opacity: .35;
+}
+
+.bracket-matcher .region {
+  border-bottom: 1px dotted lime;
+  position: absolute;
+}
+
+.spell-check-misspelling .region {
+  border-bottom: 2px dotted rgba(255, 51, 51, 0.75);
 }
 
 pre.editor-colors,
@@ -500,7 +507,7 @@ pre.editor-colors .fold-marker:after,
 <ul>
 <li>Linked Lists<ul>
 <li><del><a href="technical/linked-lists/cheatsheet.html">Cheatsheet</a></del> (<del><a href="technical/linked-lists/cheatsheet.pdf">PDF</a></del>)</li>
-<li><a href="technical/linked-lists/questions.html">Questions</a> (<del><a href="technical/linked-lists/questions.pdf">PDF</a></del>)</li>
+<li><a href="technical/linked-lists/questions.html">Questions</a> (<a href="technical/linked-lists/questions.pdf">PDF</a>)</li>
 </ul>
 </li>
 </ul></body>

@@ -1,0 +1,1535 @@
+<!DOCTYPE html> <html> <head> <title>scratch</title> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">  <style> .markdown-preview-enhanced pre, .markdown-preview-enhanced .host { color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); }
+.markdown-preview-enhanced pre .line.cursor-line, .markdown-preview-enhanced .host .line.cursor-line { background-color: rgba(153, 187, 255, 0.0392157); }
+.markdown-preview-enhanced pre .invisible, .markdown-preview-enhanced .host .invisible { color: rgb(171, 178, 191); }
+.markdown-preview-enhanced pre .cursor, .markdown-preview-enhanced .host .cursor { border-left-width: 2px; border-left-style: solid; border-left-color: rgb(82, 139, 255); }
+.markdown-preview-enhanced pre .selection .region, .markdown-preview-enhanced .host .selection .region { background-color: rgb(62, 68, 81); }
+.markdown-preview-enhanced pre .bracket-matcher .region, .markdown-preview-enhanced .host .bracket-matcher .region { border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(82, 139, 255); box-sizing: border-box; }
+.markdown-preview-enhanced pre .invisible-character, .markdown-preview-enhanced .host .invisible-character { color: rgba(171, 178, 191, 0.14902); }
+.markdown-preview-enhanced pre .indent-guide, .markdown-preview-enhanced .host .indent-guide { color: rgba(171, 178, 191, 0.14902); }
+.markdown-preview-enhanced pre .wrap-guide, .markdown-preview-enhanced .host .wrap-guide { background-color: rgba(171, 178, 191, 0.14902); }
+.markdown-preview-enhanced pre .find-result .region.region.region, .markdown-preview-enhanced .host .find-result .region.region.region, .markdown-preview-enhanced pre .current-result .region.region.region, .markdown-preview-enhanced .host .current-result .region.region.region { border-radius: 0px; transition: border-color 0.4s; background-color: rgba(82, 139, 255, 0.239216); }
+.markdown-preview-enhanced pre .find-result .region.region.region, .markdown-preview-enhanced .host .find-result .region.region.region { border: 2px solid transparent; }
+.markdown-preview-enhanced pre .current-result .region.region.region, .markdown-preview-enhanced .host .current-result .region.region.region { border: 2px solid rgb(82, 139, 255); transition-duration: 0.1s; }
+.markdown-preview-enhanced pre .gutter .line-number, .markdown-preview-enhanced .host .gutter .line-number { color: rgb(99, 109, 131); -webkit-font-smoothing: antialiased; }
+.markdown-preview-enhanced pre .gutter .line-number.cursor-line, .markdown-preview-enhanced .host .gutter .line-number.cursor-line { color: rgb(171, 178, 191); background-color: rgb(44, 49, 58); }
+.markdown-preview-enhanced pre .gutter .line-number.cursor-line-no-selection, .markdown-preview-enhanced .host .gutter .line-number.cursor-line-no-selection { background-color: transparent; }
+.markdown-preview-enhanced pre .gutter .line-number .icon-right, .markdown-preview-enhanced .host .gutter .line-number .icon-right { color: rgb(171, 178, 191); }
+.markdown-preview-enhanced pre .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before, .markdown-preview-enhanced .host .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before { bottom: -3px; }
+.markdown-preview-enhanced pre .gutter:not(.git-diff-icon) .line-number.git-line-removed::after, .markdown-preview-enhanced .host .gutter:not(.git-diff-icon) .line-number.git-line-removed::after { content: ""; position: absolute; left: 0px; bottom: 0px; width: 25px; border-bottom-width: 1px; border-bottom-style: dotted; border-bottom-color: rgba(224, 82, 82, 0.498039); pointer-events: none; }
+.markdown-preview-enhanced pre .gutter .line-number.folded, .markdown-preview-enhanced .host .gutter .line-number.folded, .markdown-preview-enhanced pre .gutter .line-number::after, .markdown-preview-enhanced .host .gutter .line-number::after, .markdown-preview-enhanced pre .fold-marker::after, .markdown-preview-enhanced .host .fold-marker::after { color: rgb(171, 178, 191); }
+.markdown-preview-enhanced { font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; font-size: 16px; line-height: 1.6; color: rgb(171, 178, 191); overflow: initial; margin: 10px 13px; padding: 2em; box-sizing: border-box; word-wrap: break-word; background-color: rgb(40, 44, 52); }
+.markdown-preview-enhanced[data-use-github-style] { color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); }
+.markdown-preview-enhanced > :first-child { margin-top: 0px; }
+.markdown-preview-enhanced[is="space-pen-div"] { width: 100%; margin: 0px; z-index: 999; overflow: scroll; font-size: 16px; display: block; position: absolute; }
+.markdown-preview-enhanced[is="space-pen-div"][data-use-github-style] { }
+.markdown-preview-enhanced[is="space-pen-div"][data-use-github-style] ::-webkit-scrollbar-track { box-shadow: rgba(218, 218, 218, 0.6) 0px 0px 3px inset; background-color: rgb(244, 244, 244); }
+.markdown-preview-enhanced[is="space-pen-div"][data-use-github-style] ::-webkit-scrollbar-thumb { border-radius: 10px; border-color: transparent; background-color: rgb(204, 204, 204); }
+.markdown-preview-enhanced h1, .markdown-preview-enhanced h2, .markdown-preview-enhanced h3, .markdown-preview-enhanced h4, .markdown-preview-enhanced h5, .markdown-preview-enhanced h6 { line-height: 1.2; margin-top: 1em; margin-bottom: 16px; color: rgb(255, 255, 255); }
+.markdown-preview-enhanced[data-use-github-style] h1, .markdown-preview-enhanced[data-use-github-style] h2, .markdown-preview-enhanced[data-use-github-style] h3, .markdown-preview-enhanced[data-use-github-style] h4, .markdown-preview-enhanced[data-use-github-style] h5, .markdown-preview-enhanced[data-use-github-style] h6 { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced h1 { font-size: 2.4em; font-weight: 300; padding-bottom: 0.3em; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(75, 83, 98); }
+.markdown-preview-enhanced h2 { font-size: 1.8em; font-weight: 400; padding-bottom: 0.3em; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(75, 83, 98); }
+.markdown-preview-enhanced h3 { font-size: 1.5em; font-weight: 500; }
+.markdown-preview-enhanced h4 { font-size: 1.2em; font-weight: 600; }
+.markdown-preview-enhanced h5 { font-size: 1.1em; font-weight: 600; }
+.markdown-preview-enhanced h6 { font-size: 1em; font-weight: 600; }
+.markdown-preview-enhanced[data-use-github-style] h1, .markdown-preview-enhanced[data-use-github-style] h2 { border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgb(231, 231, 231); }
+.markdown-preview-enhanced strong { color: rgb(255, 255, 255); }
+.markdown-preview-enhanced[data-use-github-style] strong { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced del { color: rgb(124, 135, 156); }
+.markdown-preview-enhanced a:not([href]) { color: inherit; text-decoration: none; }
+.markdown-preview-enhanced a { color: rgb(0, 136, 204); text-decoration: none; }
+.markdown-preview-enhanced a:hover { color: rgb(0, 80, 163); text-decoration: none; }
+.markdown-preview-enhanced img { max-width: 100%; }
+.markdown-preview-enhanced > p { margin-top: 0px; margin-bottom: 16px; word-wrap: break-word; }
+.markdown-preview-enhanced > ul, .markdown-preview-enhanced > ol { margin-bottom: 16px; }
+.markdown-preview-enhanced ul, .markdown-preview-enhanced ol { padding-left: 2em; }
+.markdown-preview-enhanced ul.no-list, .markdown-preview-enhanced ol.no-list { padding: 0px; list-style-type: none; }
+.markdown-preview-enhanced ul ul, .markdown-preview-enhanced ul ol, .markdown-preview-enhanced ol ol, .markdown-preview-enhanced ol ul { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview-enhanced li { margin-bottom: 0px; }
+.markdown-preview-enhanced li.task-list-item { list-style: none; }
+.markdown-preview-enhanced li > p { margin-top: 0px; margin-bottom: 0px; }
+.markdown-preview-enhanced .task-list-item-checkbox { margin: 0px 0.2em 0.25em -1.6em; vertical-align: middle; }
+.markdown-preview-enhanced .task-list-item-checkbox:hover { cursor: pointer; }
+.markdown-preview-enhanced blockquote { margin: 16px 0px; font-size: inherit; padding: 0px 15px; color: rgb(124, 135, 156); border-left-width: 4px; border-left-style: solid; border-left-color: rgb(75, 83, 98); }
+.markdown-preview-enhanced blockquote > :first-child { margin-top: 0px; }
+.markdown-preview-enhanced blockquote > :last-child { margin-bottom: 0px; }
+.markdown-preview-enhanced[data-use-github-style] blockquote { color: rgb(119, 119, 119); border-left-width: 4px; border-left-style: solid; border-left-color: rgb(221, 221, 221); }
+.markdown-preview-enhanced hr { height: 4px; margin: 32px 0px; border: 0px none; background-color: rgb(75, 83, 98); }
+.markdown-preview-enhanced[data-use-github-style] hr { background-color: rgb(231, 231, 231); }
+.markdown-preview-enhanced table { margin: 10px 0px 15px; border-collapse: collapse; border-spacing: 0px; display: block; width: 100%; overflow: auto; word-break: keep-all; }
+.markdown-preview-enhanced table th { font-weight: bold; color: rgb(255, 255, 255); }
+.markdown-preview-enhanced table td, .markdown-preview-enhanced table th { border: 1px solid rgb(75, 83, 98); padding: 6px 13px; }
+.markdown-preview-enhanced[data-use-github-style] th { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced[data-use-github-style] td, .markdown-preview-enhanced[data-use-github-style] th { border: 1px solid rgb(221, 221, 221); }
+.markdown-preview-enhanced dl { padding: 0px; }
+.markdown-preview-enhanced dl dt { padding: 0px; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; }
+.markdown-preview-enhanced dl dd { padding: 0px 16px; margin-bottom: 16px; }
+.markdown-preview-enhanced code { font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; color: rgb(255, 255, 255); font-size: 0.85em !important; background-color: rgb(58, 63, 75); }
+.markdown-preview-enhanced[data-use-github-style] code { color: inherit; background-color: rgba(0, 0, 0, 0.0392157); }
+.markdown-preview-enhanced pre > code { padding: 0px; margin: 0px; word-break: normal; white-space: pre; border: 0px; font-size: 0.85em !important; background: transparent; }
+.markdown-preview-enhanced .highlight { margin-bottom: 16px; }
+.markdown-preview-enhanced .highlight pre, .markdown-preview-enhanced pre { font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; padding: 16px; overflow: auto; line-height: 1.45; color: rgb(171, 178, 191); border: rgb(75, 83, 98); border-radius: 3px; font-size: 0.85em !important; background-color: rgb(49, 54, 63); }
+.markdown-preview-enhanced .highlight pre { margin-bottom: 0px; word-break: normal; }
+.markdown-preview-enhanced pre { word-wrap: break-word; white-space: normal; word-break: break-all; }
+.markdown-preview-enhanced pre .section { opacity: 1; }
+.markdown-preview-enhanced pre code, .markdown-preview-enhanced pre tt { display: inline; max-width: initial; padding: 0px; margin: 0px; overflow: initial; line-height: inherit; word-wrap: normal; border: 0px; background-color: transparent; }
+.markdown-preview-enhanced pre code::before, .markdown-preview-enhanced pre tt::before, .markdown-preview-enhanced pre code::after, .markdown-preview-enhanced pre tt::after { content: normal; }
+.markdown-preview-enhanced p, .markdown-preview-enhanced blockquote, .markdown-preview-enhanced ul, .markdown-preview-enhanced ol, .markdown-preview-enhanced dl, .markdown-preview-enhanced pre { margin-top: 0px; margin-bottom: 16px; }
+.markdown-preview-enhanced pre.editor-colors { margin: 16px 0px; padding: 1em; font-size: 0.92em; border-radius: 3px; background-color: rgb(49, 54, 63); }
+.markdown-preview-enhanced kbd { color: rgb(255, 255, 255); border-width: 1px 1px 2px; border-style: solid; border-color: rgb(75, 83, 98) rgb(75, 83, 98) rgb(62, 68, 81); background-color: rgb(58, 63, 75); }
+.markdown-preview-enhanced[data-use-github-style] kbd { color: rgb(51, 51, 51); border-style: solid; border-width: 1px; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); border-radius: 3px; box-shadow: rgb(187, 187, 187) 0px -1px 0px inset; background-color: rgb(252, 252, 252); }
+.markdown-preview-enhanced .pagebreak, .markdown-preview-enhanced .newpage { page-break-before: always; }
+@media screen and (min-width: 914px) { 
+  .markdown-preview-enhanced { width: 854px; margin: 10px auto; background: rgb(40, 44, 52); }
+}
+@media screen and (max-width: 400px) { 
+  .markdown-preview-enhanced { font-size: 14px; }
+}
+@media screen and (min-width: 914px) { 
+  .markdown-preview-enhanced[data-use-github-style] { background: rgb(255, 255, 255); }
+}
+@media print { 
+  .markdown-preview-enhanced { background-color: rgb(40, 44, 52); }
+  .markdown-preview-enhanced h1, .markdown-preview-enhanced h2, .markdown-preview-enhanced h3, .markdown-preview-enhanced h4, .markdown-preview-enhanced h5, .markdown-preview-enhanced h6 { color: rgb(255, 255, 255); page-break-after: avoid; }
+  .markdown-preview-enhanced blockquote { color: rgb(124, 135, 156); }
+  .markdown-preview-enhanced table, .markdown-preview-enhanced pre { page-break-inside: avoid; }
+  .markdown-preview-enhanced table { display: table; }
+  .markdown-preview-enhanced img { display: block; max-width: 100%; max-height: 100%; }
+  .markdown-preview-enhanced pre, .markdown-preview-enhanced code { word-wrap: break-word; white-space: normal; }
+}
+@media print { 
+  .markdown-preview-enhanced[data-use-github-style] { background-color: rgb(255, 255, 255); }
+  .markdown-preview-enhanced[data-use-github-style] h1, .markdown-preview-enhanced[data-use-github-style] h2, .markdown-preview-enhanced[data-use-github-style] h3, .markdown-preview-enhanced[data-use-github-style] h4, .markdown-preview-enhanced[data-use-github-style] h5, .markdown-preview-enhanced[data-use-github-style] h6 { color: rgb(34, 34, 34); }
+  .markdown-preview-enhanced[data-use-github-style] blockquote { color: rgb(119, 119, 119); }
+  .markdown-preview-enhanced[data-use-github-style] pre { border: 2px solid rgb(246, 246, 246); }
+}
+.markdown-preview-enhanced .mermaid { margin-bottom: 16px; }
+.markdown-preview-enhanced .mermaid .edgePath .path { stroke: rgb(255, 255, 255); }
+.markdown-preview-enhanced .mermaid .edgePath marker path { fill: rgb(255, 255, 255) !important; opacity: 1 !important; }
+.markdown-preview-enhanced .mermaid line, .markdown-preview-enhanced .mermaid marker { stroke: rgb(255, 255, 255) !important; opacity: 1 !important; }
+.markdown-preview-enhanced .mermaid .messageText { fill: rgb(255, 255, 255); }
+.markdown-preview-enhanced[data-use-github-style] .mermaid .edgePath .path { stroke: rgb(51, 51, 51); }
+.markdown-preview-enhanced[data-use-github-style] .mermaid marker path { fill: rgb(51, 51, 51) !important; opacity: 1 !important; }
+.markdown-preview-enhanced[data-use-github-style] line, .markdown-preview-enhanced[data-use-github-style] marker { stroke: rgb(51, 51, 51) !important; opacity: 1 !important; }
+.markdown-preview-enhanced[data-use-github-style] .messageText { fill: rgb(51, 51, 51); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors, .markdown-preview-enhanced .github-syntax-theme .host { color: rgb(51, 51, 51); background-color: rgb(247, 247, 247); }
+.markdown-preview-enhanced .github-syntax-theme pre { color: rgb(51, 51, 51); background-color: rgb(247, 247, 247); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .gutter, .markdown-preview-enhanced .github-syntax-theme .host .gutter { color: rgb(179, 179, 179); background-color: rgb(255, 255, 255); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .gutter .line-number.cursor-line, .markdown-preview-enhanced .github-syntax-theme .host .gutter .line-number.cursor-line { color: rgb(77, 77, 77); background-color: rgb(245, 245, 245); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .gutter .line-number.cursor-line-no-selection, .markdown-preview-enhanced .github-syntax-theme .host .gutter .line-number.cursor-line-no-selection { color: rgb(77, 77, 77); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .wrap-guide, .markdown-preview-enhanced .github-syntax-theme .host .wrap-guide { color: rgb(223, 223, 223); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .indent-guide, .markdown-preview-enhanced .github-syntax-theme .host .indent-guide { color: rgb(223, 223, 223); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .invisible-character, .markdown-preview-enhanced .github-syntax-theme .host .invisible-character { color: rgb(223, 223, 223); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .search-results .marker .region, .markdown-preview-enhanced .github-syntax-theme .host .search-results .marker .region { border: rgb(0, 0, 0); background-color: transparent; }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors .search-results .marker.current-result .region, .markdown-preview-enhanced .github-syntax-theme .host .search-results .marker.current-result .region { border: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors.is-focused .cursor, .markdown-preview-enhanced .github-syntax-theme .host(.is-focused) .cursor { border-color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors.is-focused .selection .region, .markdown-preview-enhanced .github-syntax-theme .host(.is-focused) .selection .region { background-color: rgba(178, 215, 255, 0.4); }
+.markdown-preview-enhanced .github-syntax-theme pre.editor-colors.is-focused .line-number.cursor-line-no-selection, .markdown-preview-enhanced .github-syntax-theme pre.editor-colors.is-focused .line.cursor-line, .markdown-preview-enhanced .github-syntax-theme .host(.is-focused) .line-number.cursor-line-no-selection, .markdown-preview-enhanced .github-syntax-theme .host(.is-focused) .line.cursor-line { background-color: rgba(240, 240, 240, 0.498039); }
+.markdown-preview-enhanced .github-syntax-theme .comment, .markdown-preview-enhanced .github-syntax-theme .punctuation.comment { color: rgb(176, 176, 176); }
+.markdown-preview-enhanced .github-syntax-theme .string, .markdown-preview-enhanced .github-syntax-theme .string .constant.character.escape { color: rgb(34, 115, 195); }
+.markdown-preview-enhanced .github-syntax-theme .constant.numeric { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .constant.language { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .constant.character, .markdown-preview-enhanced .github-syntax-theme .constant.other.rgb-value { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .constant.numeric.line-number.find-in-files, .markdown-preview-enhanced .github-syntax-theme .constant.numeric.line-number.match.find-in-files { color: rgb(171, 176, 179); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.class { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .entity.other.inherited-class { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .meta.tag.any.html, .markdown-preview-enhanced .github-syntax-theme .meta.tag.block.any.html { color: rgb(171, 176, 179); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.tag { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.function { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name, .markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name .punctuation.definition.entity.scss, .markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name.id.css, .markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name.id.css .punctuation.definition.entity.css, .markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name.class.css .punctuation.definition.entity.css { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .punctuation.definition.tag.begin.html, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.tag.end.html, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.tag.html, .markdown-preview-enhanced .github-syntax-theme .meta.tag.block.any.html { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.control { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.operator { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .storage { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .storage.type { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .support.function { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .support.constant { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .support.type, .markdown-preview-enhanced .github-syntax-theme .support.class, .markdown-preview-enhanced .github-syntax-theme .meta.property-name.scss { color: rgb(0, 153, 204); }
+.markdown-preview-enhanced .github-syntax-theme .support.other.variable { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .invalid, .markdown-preview-enhanced .github-syntax-theme .invalid.illegal { color: rgb(248, 248, 248); background-color: rgb(181, 42, 29); }
+.markdown-preview-enhanced .github-syntax-theme .invalid.deprecated { color: rgb(181, 42, 29); background-color: rgb(255, 255, 255); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.filename.find-in-files { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .source.css .punctuation.definition.entity, .markdown-preview-enhanced .github-syntax-theme .punctuation.terminator.rule.scss { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .source.css .entity.other.attribute-name.pseudo-class, .markdown-preview-enhanced .github-syntax-theme .source.css .entity.other.attribute-name.pseudo-element { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .source.css .meta.value, .markdown-preview-enhanced .github-syntax-theme .source.css .support.constant, .markdown-preview-enhanced .github-syntax-theme .source.css .support.function { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .source.scss .entity.other.attribute-name.pseudo-class, .markdown-preview-enhanced .github-syntax-theme .source.scss .entity.other.attribute-name.pseudo-element { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .support.constant.property-value, .markdown-preview-enhanced .github-syntax-theme .source.scss .support.function, .markdown-preview-enhanced .github-syntax-theme .meta.property-value.scss { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .variable, .markdown-preview-enhanced .github-syntax-theme .source.scss .variable, .markdown-preview-enhanced .github-syntax-theme .variable.interpolation.scss, .markdown-preview-enhanced .github-syntax-theme .source.scss .meta.set.variable { color: rgb(222, 104, 173); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.control.else.scss, .markdown-preview-enhanced .github-syntax-theme .keyword.control.if.scss, .markdown-preview-enhanced .github-syntax-theme .keyword.control.content.scss { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.other.unit { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .keyword.other.important { color: rgb(235, 69, 53); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.tag.reference.scss { color: rgb(181, 127, 0); }
+.markdown-preview-enhanced .github-syntax-theme .entity.name.type.new.js { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .variable.language.js { color: rgb(238, 106, 66); }
+.markdown-preview-enhanced .github-syntax-theme .variable.parameter.function { color: rgb(181, 127, 0); }
+.markdown-preview-enhanced .github-syntax-theme .source.js .meta.function .entity.name.function, .markdown-preview-enhanced .github-syntax-theme .source.js .entity.name.function .meta.function { color: rgb(133, 103, 181); }
+.markdown-preview-enhanced .github-syntax-theme .source.php .entity.name.type.class { color: rgb(238, 106, 66); }
+.markdown-preview-enhanced .github-syntax-theme .punctuation.definition.heading.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.italic.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.bold.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.string.begin.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.string.end.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.metadata.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.link.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.blockquote.markdown, .markdown-preview-enhanced .github-syntax-theme .punctuation.definition.raw.markdown { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .punctuation.section.function.scss { color: rgb(99, 163, 92); }
+.markdown-preview-enhanced .github-syntax-theme .punctuation, .markdown-preview-enhanced .github-syntax-theme .meta.method-call, .markdown-preview-enhanced .github-syntax-theme .meta.method { color: rgb(51, 51, 51); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .meta.separator { color: rgb(179, 179, 179); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.raw.block { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.raw.inline { color: rgb(0, 0, 0); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .meta.link, .markdown-preview-enhanced .github-syntax-theme .text.html.markdown .meta.image { color: rgb(65, 131, 196); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.underline.link, .markdown-preview-enhanced .github-syntax-theme .text.html.markdown .constant.other.reference { font-style: italic; }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.list { color: rgb(238, 106, 66); }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.bold { font-weight: bold; }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.italic { font-style: italic; }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.bold .markup.italic { font-weight: bold; font-style: italic; }
+.markdown-preview-enhanced .github-syntax-theme .text.html.markdown .markup.italic .markup.bold { font-weight: bold; font-style: italic; }
+.markdown-preview-enhanced .github-syntax-theme .string.quoted.double.html .invalid.illegal.bad-ampersand.html { color: rgb(34, 115, 195); background-color: rgb(255, 255, 255); }
+.markdown-preview-enhanced .github-syntax-theme .bracket-matcher .region { border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: rgba(240, 192, 0, 0.8); z-index: 100; background-color: rgba(255, 214, 51, 0.0980392); }
+.markdown-preview-enhanced .github-syntax-theme .meta.tag.template.angular { color: rgb(34, 115, 195); }
+.markdown-preview-enhanced .github-syntax-theme .meta.tag.template.angular .punctuation.definition.block.begin.angular, .markdown-preview-enhanced .github-syntax-theme .meta.tag.template.angular .punctuation.definition.block.end.angular, .markdown-preview-enhanced .github-syntax-theme .meta.tag.template.angular .meta.brace.curly.js { color: rgb(173, 28, 93); }
+.markdown-preview-enhanced .github-syntax-theme .entity.other.attribute-name.html.angular, .markdown-preview-enhanced .github-syntax-theme .meta.attribute.html.angular { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors, .markdown-preview-enhanced[data-use-github-syntax-theme] .host { color: rgb(51, 51, 51) !important; background-color: rgb(247, 247, 247) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre { color: rgb(51, 51, 51) !important; background-color: rgb(247, 247, 247) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .gutter, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .gutter { color: rgb(179, 179, 179) !important; background-color: rgb(255, 255, 255) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .gutter .line-number.cursor-line, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .gutter .line-number.cursor-line { color: rgb(77, 77, 77) !important; background-color: rgb(245, 245, 245) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .gutter .line-number.cursor-line-no-selection, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .gutter .line-number.cursor-line-no-selection { color: rgb(77, 77, 77) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .wrap-guide, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .wrap-guide { color: rgb(223, 223, 223) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .indent-guide, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .indent-guide { color: rgb(223, 223, 223) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .invisible-character, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .invisible-character { color: rgb(223, 223, 223) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .search-results .marker .region, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .search-results .marker .region { border: rgb(0, 0, 0) !important; background-color: transparent !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors .search-results .marker.current-result .region, .markdown-preview-enhanced[data-use-github-syntax-theme] .host .search-results .marker.current-result .region { border: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors.is-focused .cursor, .markdown-preview-enhanced[data-use-github-syntax-theme] .host(.is-focused) .cursor { border-color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors.is-focused .selection .region, .markdown-preview-enhanced[data-use-github-syntax-theme] .host(.is-focused) .selection .region { background-color: rgba(178, 215, 255, 0.4) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors.is-focused .line-number.cursor-line-no-selection, .markdown-preview-enhanced[data-use-github-syntax-theme] pre.editor-colors.is-focused .line.cursor-line, .markdown-preview-enhanced[data-use-github-syntax-theme] .host(.is-focused) .line-number.cursor-line-no-selection, .markdown-preview-enhanced[data-use-github-syntax-theme] .host(.is-focused) .line.cursor-line { background-color: rgba(240, 240, 240, 0.498039) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .comment, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.comment { color: rgb(176, 176, 176) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .string, .markdown-preview-enhanced[data-use-github-syntax-theme] .string .constant.character.escape { color: rgb(34, 115, 195) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .constant.numeric { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .constant.language { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .constant.character, .markdown-preview-enhanced[data-use-github-syntax-theme] .constant.other.rgb-value { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .constant.numeric.line-number.find-in-files, .markdown-preview-enhanced[data-use-github-syntax-theme] .constant.numeric.line-number.match.find-in-files { color: rgb(171, 176, 179) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.class { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.inherited-class { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.any.html, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.block.any.html { color: rgb(171, 176, 179) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.tag { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.function { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name, .markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name .punctuation.definition.entity.scss, .markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name.id.css, .markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name.id.css .punctuation.definition.entity.css, .markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name.class.css .punctuation.definition.entity.css { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.tag.begin.html, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.tag.end.html, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.tag.html, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.block.any.html { color: rgb(51, 51, 51) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.control { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.operator { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .storage { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .storage.type { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.function { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.constant { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.type, .markdown-preview-enhanced[data-use-github-syntax-theme] .support.class, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.property-name.scss { color: rgb(0, 153, 204) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.other.variable { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .invalid, .markdown-preview-enhanced[data-use-github-syntax-theme] .invalid.illegal { color: rgb(248, 248, 248) !important; background-color: rgb(181, 42, 29) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .invalid.deprecated { color: rgb(181, 42, 29) !important; background-color: rgb(255, 255, 255) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.filename.find-in-files { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .punctuation.definition.entity, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.terminator.rule.scss { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .entity.other.attribute-name.pseudo-class, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .entity.other.attribute-name.pseudo-element { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .meta.value, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .support.constant, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.css .support.function { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .entity.other.attribute-name.pseudo-class, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .entity.other.attribute-name.pseudo-element { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .support.constant.property-value, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .support.function, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.property-value.scss { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .variable, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .variable, .markdown-preview-enhanced[data-use-github-syntax-theme] .variable.interpolation.scss, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.scss .meta.set.variable { color: rgb(222, 104, 173) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.control.else.scss, .markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.control.if.scss, .markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.control.content.scss { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.other.unit { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .keyword.other.important { color: rgb(235, 69, 53) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.tag.reference.scss { color: rgb(181, 127, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.name.type.new.js { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .variable.language.js { color: rgb(238, 106, 66) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .variable.parameter.function { color: rgb(181, 127, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.js .meta.function .entity.name.function, .markdown-preview-enhanced[data-use-github-syntax-theme] .source.js .entity.name.function .meta.function { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .source.php .entity.name.type.class { color: rgb(238, 106, 66) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.heading.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.italic.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.bold.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.string.begin.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.string.end.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.metadata.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.link.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.blockquote.markdown, .markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.definition.raw.markdown { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation.section.function.scss { color: rgb(99, 163, 92) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .punctuation, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.method-call, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.method { color: rgb(51, 51, 51) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .meta.separator { color: rgb(179, 179, 179) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.raw.block { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.raw.inline { color: rgb(0, 0, 0) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .meta.link, .markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .meta.image { color: rgb(65, 131, 196) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.underline.link, .markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .constant.other.reference { font-style: italic !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.list { color: rgb(238, 106, 66) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.bold { font-weight: bold !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.italic { font-style: italic !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.bold .markup.italic { font-weight: bold !important; font-style: italic !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .text.html.markdown .markup.italic .markup.bold { font-weight: bold !important; font-style: italic !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .string.quoted.double.html .invalid.illegal.bad-ampersand.html { color: rgb(34, 115, 195) !important; background-color: rgb(255, 255, 255) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .bracket-matcher .region { border-bottom-width: 1px !important; border-bottom-style: solid !important; border-bottom-color: rgba(240, 192, 0, 0.8) !important; z-index: 100 !important; background-color: rgba(255, 214, 51, 0.0980392) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.template.angular { color: rgb(34, 115, 195) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.template.angular .punctuation.definition.block.begin.angular, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.template.angular .punctuation.definition.block.end.angular, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.tag.template.angular .meta.brace.curly.js { color: rgb(173, 28, 93) !important; }
+.markdown-preview-enhanced[data-use-github-syntax-theme] .entity.other.attribute-name.html.angular, .markdown-preview-enhanced[data-use-github-syntax-theme] .meta.attribute.html.angular { color: rgb(133, 103, 181) !important; }
+.markdown-preview-enhanced[data-presentation-mode] { font-size: 24px; width: 100%; box-sizing: border-box; margin: 0px; padding: 0px; }
+.markdown-preview-enhanced[data-presentation-mode] h1, .markdown-preview-enhanced[data-presentation-mode] h2, .markdown-preview-enhanced[data-presentation-mode] h3, .markdown-preview-enhanced[data-presentation-mode] h4, .markdown-preview-enhanced[data-presentation-mode] h5, .markdown-preview-enhanced[data-presentation-mode] h6 { margin-top: 0px; }
+.markdown-preview-enhanced[data-presentation-mode] strong { font-weight: bold; }
+.markdown-preview-enhanced[data-presentation-mode]::-webkit-scrollbar { display: none; }
+.markdown-preview-enhanced .slides { text-align: left !important; }
+.markdown-preview-enhanced-custom pre, .markdown-preview-enhanced-custom code, .markdown-preview-enhanced-custom tt { line-height: 1.5; }
+.markdown-preview-enhanced-custom code { padding: 2px 4px; color: rgb(249, 38, 114); white-space: nowrap; border: 1px solid rgb(89, 89, 89); }
+.markdown-preview-enhanced-custom h4, .markdown-preview-enhanced-custom h5, .markdown-preview-enhanced-custom h6 { color: rgb(137, 189, 255); }
+.markdown-preview-enhanced pre, .markdown-preview-enhanced code, .markdown-preview-enhanced tt { line-height: 1.5 !important; }
+.markdown-preview-enhanced code { padding: 2px 4px !important; color: rgb(249, 38, 114) !important; white-space: nowrap !important; border: 1px solid rgb(89, 89, 89) !important; }
+.markdown-preview-enhanced h4, .markdown-preview-enhanced h5, .markdown-preview-enhanced h6 { color: rgb(137, 189, 255) !important; }
+.git-diff-details-outer {
+  background-color: #282c34;
+  width: 100%;
+}
+.git-diff-details-main-panel {
+  position: relative;
+}
+.git-diff-details-button-panel {
+  text-align: right;
+  padding: 2px;
+  width: 100%;
+}
+.hide-invisibles .invisible-character {
+  opacity: 0;
+}
+.line.git-diff-details-new-highlighted {
+  background-color: rgba(162, 232, 120, 0.1) !important;
+}
+.line.git-diff-details-new-highlighted .invisible-character {
+  opacity: 0;
+}
+.line.git-diff-details-old-highlighted {
+  background-color: rgba(232, 120, 120, 0.1) !important;
+}
+.line.git-diff-details-old-highlighted .invisible-character {
+  opacity: 0;
+}
+.line.git-diff-details-new-flat {
+  background-color: rgba(162, 232, 120, 0.7) !important;
+  color: black !important;
+}
+.line.git-diff-details-new-flat span {
+  color: black !important;
+}
+.line.git-diff-details-new-flat .invisible-character {
+  opacity: 0;
+}
+.line.git-diff-details-old-flat {
+  background-color: rgba(232, 120, 120, 0.7) !important;
+  color: black !important;
+}
+.line.git-diff-details-old-flat span {
+  color: black !important;
+}
+.line.git-diff-details-old-flat .invisible-character {
+  opacity: 0;
+}
+.highlight.git-diff-details-new-highlighted .region {
+  background-color: rgba(162, 232, 120, 0.4);
+}
+.highlight.git-diff-details-old-highlighted .region {
+  background-color: rgba(232, 120, 120, 0.4);
+}
+.highlight.git-diff-details-new-flat .region {
+  background-color: rgba(162, 232, 120, 0.4);
+}
+.highlight.git-diff-details-old-flat .region {
+  background-color: rgba(232, 120, 120, 0.4);
+}
+
+.markdown-themeable-pdf-page-break {
+  border-top: 2px dotted #0098ff;
+}
+.markdown-themeable-pdf-page-break span {
+  opacity: .35;
+}
+
+.highlight.uncovered .region {
+  background-color: #d92626;
+  opacity: 0.2;
+}
+.highlight.covered .region {
+  background-color: #20b684;
+  opacity: 0.2;
+}
+
+.bracket-matcher .region {
+  border-bottom: 1px dotted lime;
+  position: absolute;
+}
+
+.spell-check-misspelling .region {
+  border-bottom: 2px dotted rgba(255, 51, 51, 0.75);
+}
+.spell-check-corrections {
+  width: 25em !important;
+}
+
+pre.editor-colors,
+.host {
+  background-color: #282c34;
+  color: #abb2bf;
+}
+pre.editor-colors .line.cursor-line,
+.host .line.cursor-line {
+  background-color: rgba(153, 187, 255, 0.04);
+}
+pre.editor-colors .invisible,
+.host .invisible {
+  color: #abb2bf;
+}
+pre.editor-colors .cursor,
+.host .cursor {
+  border-left: 2px solid #528bff;
+}
+pre.editor-colors .selection .region,
+.host .selection .region {
+  background-color: #3e4451;
+}
+pre.editor-colors .bracket-matcher .region,
+.host .bracket-matcher .region {
+  border-bottom: 1px solid #528bff;
+  box-sizing: border-box;
+}
+pre.editor-colors .invisible-character,
+.host .invisible-character {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .indent-guide,
+.host .indent-guide {
+  color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .wrap-guide,
+.host .wrap-guide {
+  background-color: rgba(171, 178, 191, 0.15);
+}
+pre.editor-colors .find-result .region.region.region,
+.host .find-result .region.region.region,
+pre.editor-colors .current-result .region.region.region,
+.host .current-result .region.region.region {
+  border-radius: 0px;
+  background-color: rgba(82, 139, 255, 0.24);
+  transition: border-color 0.4s;
+}
+pre.editor-colors .find-result .region.region.region,
+.host .find-result .region.region.region {
+  border: 2px solid transparent;
+}
+pre.editor-colors .current-result .region.region.region,
+.host .current-result .region.region.region {
+  border: 2px solid #528bff;
+  transition-duration: .1s;
+}
+pre.editor-colors .gutter .line-number,
+.host .gutter .line-number {
+  color: #636d83;
+  -webkit-font-smoothing: antialiased;
+}
+pre.editor-colors .gutter .line-number.cursor-line,
+.host .gutter .line-number.cursor-line {
+  color: #abb2bf;
+  background-color: #2c313a;
+}
+pre.editor-colors .gutter .line-number.cursor-line-no-selection,
+.host .gutter .line-number.cursor-line-no-selection {
+  background-color: transparent;
+}
+pre.editor-colors .gutter .line-number .icon-right,
+.host .gutter .line-number .icon-right {
+  color: #abb2bf;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before,
+.host .gutter:not(.git-diff-icon) .line-number.git-line-removed.git-line-removed::before {
+  bottom: -3px;
+}
+pre.editor-colors .gutter:not(.git-diff-icon) .line-number.git-line-removed::after,
+.host .gutter:not(.git-diff-icon) .line-number.git-line-removed::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 25px;
+  border-bottom: 1px dotted rgba(224, 82, 82, 0.5);
+  pointer-events: none;
+}
+pre.editor-colors .gutter .line-number.folded,
+.host .gutter .line-number.folded,
+pre.editor-colors .gutter .line-number:after,
+.host .gutter .line-number:after,
+pre.editor-colors .fold-marker:after,
+.host .fold-marker:after {
+  color: #abb2bf;
+}
+.comment {
+  color: #5c6370;
+  font-style: italic;
+}
+.comment .markup.link {
+  color: #5c6370;
+}
+.entity.name.type {
+  color: #e5c07b;
+}
+.entity.other.inherited-class {
+  color: #98c379;
+}
+.keyword {
+  color: #c678dd;
+}
+.keyword.control {
+  color: #c678dd;
+}
+.keyword.operator {
+  color: #abb2bf;
+}
+.keyword.other.special-method {
+  color: #61afef;
+}
+.keyword.other.unit {
+  color: #d19a66;
+}
+.storage {
+  color: #c678dd;
+}
+.storage.type.annotation,
+.storage.type.primitive {
+  color: #c678dd;
+}
+.storage.modifier.package,
+.storage.modifier.import {
+  color: #abb2bf;
+}
+.constant {
+  color: #d19a66;
+}
+.constant.variable {
+  color: #d19a66;
+}
+.constant.character.escape {
+  color: #56b6c2;
+}
+.constant.numeric {
+  color: #d19a66;
+}
+.constant.other.color {
+  color: #56b6c2;
+}
+.constant.other.symbol {
+  color: #56b6c2;
+}
+.variable {
+  color: #e06c75;
+}
+.variable.interpolation {
+  color: #be5046;
+}
+.variable.parameter {
+  color: #abb2bf;
+}
+.string {
+  color: #98c379;
+}
+.string.regexp {
+  color: #56b6c2;
+}
+.string.regexp .source.ruby.embedded {
+  color: #e5c07b;
+}
+.string.other.link {
+  color: #e06c75;
+}
+.punctuation.definition.comment {
+  color: #5c6370;
+}
+.punctuation.definition.method-parameters,
+.punctuation.definition.function-parameters,
+.punctuation.definition.parameters,
+.punctuation.definition.separator,
+.punctuation.definition.seperator,
+.punctuation.definition.array {
+  color: #abb2bf;
+}
+.punctuation.definition.heading,
+.punctuation.definition.identity {
+  color: #61afef;
+}
+.punctuation.definition.bold {
+  color: #e5c07b;
+  font-weight: bold;
+}
+.punctuation.definition.italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.punctuation.section.embedded {
+  color: #be5046;
+}
+.punctuation.section.method,
+.punctuation.section.class,
+.punctuation.section.inner-class {
+  color: #abb2bf;
+}
+.support.class {
+  color: #e5c07b;
+}
+.support.type {
+  color: #56b6c2;
+}
+.support.function {
+  color: #56b6c2;
+}
+.support.function.any-method {
+  color: #61afef;
+}
+.entity.name.function {
+  color: #61afef;
+}
+.entity.name.class,
+.entity.name.type.class {
+  color: #e5c07b;
+}
+.entity.name.section {
+  color: #61afef;
+}
+.entity.name.tag {
+  color: #e06c75;
+}
+.entity.other.attribute-name {
+  color: #d19a66;
+}
+.entity.other.attribute-name.id {
+  color: #61afef;
+}
+.meta.class {
+  color: #e5c07b;
+}
+.meta.class.body {
+  color: #abb2bf;
+}
+.meta.method-call,
+.meta.method {
+  color: #abb2bf;
+}
+.meta.definition.variable {
+  color: #e06c75;
+}
+.meta.link {
+  color: #d19a66;
+}
+.meta.require {
+  color: #61afef;
+}
+.meta.selector {
+  color: #c678dd;
+}
+.meta.separator {
+  background-color: #373b41;
+  color: #abb2bf;
+}
+.meta.tag {
+  color: #abb2bf;
+}
+.underline {
+  text-decoration: underline;
+}
+.none {
+  color: #abb2bf;
+}
+.invalid.deprecated {
+  color: #523d14 !important;
+  background-color: #e0c285 !important;
+}
+.invalid.illegal {
+  color: #ffffff !important;
+  background-color: #e05252 !important;
+}
+.markup.bold {
+  color: #d19a66;
+  font-weight: bold;
+}
+.markup.changed {
+  color: #c678dd;
+}
+.markup.deleted {
+  color: #e06c75;
+}
+.markup.italic {
+  color: #c678dd;
+  font-style: italic;
+}
+.markup.heading {
+  color: #e06c75;
+}
+.markup.heading .punctuation.definition.heading {
+  color: #61afef;
+}
+.markup.link {
+  color: #c678dd;
+}
+.markup.inserted {
+  color: #98c379;
+}
+.markup.quote {
+  color: #d19a66;
+}
+.markup.raw {
+  color: #98c379;
+}
+.source.cs .keyword.operator {
+  color: #c678dd;
+}
+.source.css .property-name,
+.source.css .property-value {
+  color: #828997;
+}
+.source.css .property-name.support,
+.source.css .property-value.support {
+  color: #abb2bf;
+}
+.source.gfm .markup {
+  -webkit-font-smoothing: auto;
+}
+.source.gfm .link .entity {
+  color: #61afef;
+}
+.source.go .storage.type.string {
+  color: #c678dd;
+}
+.source.ini .keyword.other.definition.ini {
+  color: #e06c75;
+}
+.source.java .storage.modifier.import {
+  color: #e5c07b;
+}
+.source.java .storage.type {
+  color: #e5c07b;
+}
+.source.java .keyword.operator.instanceof {
+  color: #c678dd;
+}
+.source.java-properties .meta.key-pair {
+  color: #e06c75;
+}
+.source.java-properties .meta.key-pair > .punctuation {
+  color: #abb2bf;
+}
+.source.js .keyword.operator {
+  color: #56b6c2;
+}
+.source.js .keyword.operator.delete,
+.source.js .keyword.operator.in,
+.source.js .keyword.operator.of,
+.source.js .keyword.operator.instanceof,
+.source.js .keyword.operator.new,
+.source.js .keyword.operator.typeof,
+.source.js .keyword.operator.void {
+  color: #c678dd;
+}
+.source.json .meta.structure.dictionary.json > .string.quoted.json {
+  color: #e06c75;
+}
+.source.json .meta.structure.dictionary.json > .string.quoted.json > .punctuation.string {
+  color: #e06c75;
+}
+.source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json,
+.source.json .meta.structure.array.json > .value.json > .string.quoted.json,
+.source.json .meta.structure.dictionary.json > .value.json > .string.quoted.json > .punctuation,
+.source.json .meta.structure.array.json > .value.json > .string.quoted.json > .punctuation {
+  color: #98c379;
+}
+.source.json .meta.structure.dictionary.json > .constant.language.json,
+.source.json .meta.structure.array.json > .constant.language.json {
+  color: #56b6c2;
+}
+.source.ruby .constant.other.symbol > .punctuation {
+  color: inherit;
+}
+.source.python .keyword.operator.logical.python {
+  color: #c678dd;
+}
+.source.python .variable.parameter {
+  color: #d19a66;
+}
+ /* Flowchart variables */
+/* Sequence Diagram variables */
+/* Gantt chart variables */
+.mermaid .label {
+  color: #323D47;
+}
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon {
+  fill: #BDD5EA;
+  stroke: #81B1DB;
+  stroke-width: 1px;
+}
+.mermaid .edgePath .path {
+  stroke: lightgrey;
+}
+.mermaid .edgeLabel {
+  background-color: #e8e8e8;
+}
+.mermaid .cluster rect {
+  fill: #6D6D65 !important;
+  rx: 4 !important;
+  stroke: rgba(255, 255, 255, 0.25) !important;
+  stroke-width: 1px !important;
+}
+.mermaid .cluster text {
+  fill: #F9FFFE;
+}
+.mermaid .actor {
+  stroke: #81B1DB;
+  fill: #BDD5EA;
+}
+.mermaid text.actor {
+  fill: black;
+  stroke: none;
+}
+.mermaid .actor-line {
+  stroke: lightgrey;
+}
+.mermaid .messageLine0 {
+  stroke-width: 1.5;
+  stroke-dasharray: "2 2";
+  marker-end: "url(#arrowhead)";
+  stroke: lightgrey;
+}
+.mermaid .messageLine1 {
+  stroke-width: 1.5;
+  stroke-dasharray: "2 2";
+  stroke: lightgrey;
+}
+.mermaid #arrowhead {
+  fill: lightgrey !important;
+}
+.mermaid #crosshead path {
+  fill: lightgrey !important;
+  stroke: lightgrey !important;
+}
+.mermaid .messageText {
+  fill: lightgrey;
+  stroke: none;
+}
+.mermaid .labelBox {
+  stroke: #81B1DB;
+  fill: #BDD5EA;
+}
+.mermaid .labelText {
+  fill: #323D47;
+  stroke: none;
+}
+.mermaid .loopText {
+  fill: lightgrey;
+  stroke: none;
+}
+.mermaid .loopLine {
+  stroke-width: 2;
+  stroke-dasharray: "2 2";
+  marker-end: "url(#arrowhead)";
+  stroke: #81B1DB;
+}
+.mermaid .note {
+  stroke: rgba(255, 255, 255, 0.25);
+  fill: #fff5ad;
+}
+.mermaid .noteText {
+  fill: black;
+  stroke: none;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px;
+}
+/** Section styling */
+.mermaid .section {
+  stroke: none;
+  opacity: 0.2;
+}
+.mermaid .section0 {
+  fill: rgba(255, 255, 255, 0.3);
+}
+.mermaid .section2 {
+  fill: #EAE8B9;
+}
+.mermaid .section1,
+.mermaid .section3 {
+  fill: white;
+  opacity: 0.2;
+}
+.mermaid .sectionTitle0 {
+  fill: #F9FFFE;
+}
+.mermaid .sectionTitle1 {
+  fill: #F9FFFE;
+}
+.mermaid .sectionTitle2 {
+  fill: #F9FFFE;
+}
+.mermaid .sectionTitle3 {
+  fill: #F9FFFE;
+}
+.mermaid .sectionTitle {
+  text-anchor: start;
+  font-size: 11px;
+  text-height: 14px;
+}
+/* Grid and axis */
+.mermaid .grid .tick {
+  stroke: rgba(255, 255, 255, 0.3);
+  opacity: 0.3;
+  shape-rendering: crispEdges;
+}
+.mermaid .grid .tick text {
+  fill: lightgrey;
+  opacity: 0.5;
+}
+.mermaid .grid path {
+  stroke-width: 0;
+}
+/* Today line */
+.mermaid .today {
+  fill: none;
+  stroke: #DB5757;
+  stroke-width: 2px;
+}
+/* Task styling */
+/* Default task */
+.mermaid .task {
+  stroke-width: 1;
+}
+.mermaid .taskText {
+  text-anchor: middle;
+  font-size: 11px;
+}
+.mermaid .taskTextOutsideRight {
+  fill: #323D47;
+  text-anchor: start;
+  font-size: 11px;
+}
+.mermaid .taskTextOutsideLeft {
+  fill: #323D47;
+  text-anchor: end;
+  font-size: 11px;
+}
+/* Specific task settings for the sections*/
+.mermaid .taskText0,
+.mermaid .taskText1,
+.mermaid .taskText2,
+.mermaid .taskText3 {
+  fill: #323D47;
+}
+.mermaid .task0,
+.mermaid .task1,
+.mermaid .task2,
+.mermaid task3 {
+  fill: #BDD5EA;
+  stroke: rgba(255, 255, 255, 0.5);
+}
+.mermaid .taskTextOutside0,
+.mermaid .taskTextOutside2 {
+  fill: lightgrey;
+}
+.mermaid .taskTextOutside1,
+.mermaid .taskTextOutside3 {
+  fill: lightgrey;
+}
+/* Active task */
+.mermaid .active0,
+.mermaid .active1,
+.mermaid .active2,
+.mermaid .active3 {
+  fill: #81B1DB;
+  stroke: rgba(255, 255, 255, 0.5);
+}
+.mermaid .activeText0,
+.mermaid .activeText1,
+.mermaid .activeText2,
+.mermaid .activeText3 {
+  fill: #323D47 !important;
+}
+/* Completed task */
+.mermaid .done0,
+.mermaid .done1,
+.mermaid .done2,
+.mermaid .done3 {
+  fill: lightgrey;
+}
+.mermaid .doneText0,
+.mermaid .doneText1,
+.mermaid .doneText2,
+.mermaid .doneText3 {
+  fill: #323D47 !important;
+}
+/* Tasks on the critical line */
+.mermaid .crit0,
+.mermaid .crit1,
+.mermaid .crit2,
+.mermaid .crit3 {
+  stroke: #E83737;
+  fill: #E83737;
+  stroke-width: 2;
+}
+.mermaid .activeCrit0,
+.mermaid .activeCrit1,
+.mermaid .activeCrit2,
+.mermaid .activeCrit3 {
+  stroke: #E83737;
+  fill: #81B1DB;
+  stroke-width: 2;
+}
+.mermaid .doneCrit0,
+.mermaid .doneCrit1,
+.mermaid .doneCrit2,
+.mermaid .doneCrit3 {
+  stroke: #E83737;
+  fill: lightgrey;
+  stroke-width: 1;
+  cursor: pointer;
+  shape-rendering: crispEdges;
+}
+.mermaid .doneCritText0,
+.mermaid .doneCritText1,
+.mermaid .doneCritText2,
+.mermaid .doneCritText3 {
+  fill: lightgrey !important;
+}
+.mermaid .activeCritText0,
+.mermaid .activeCritText1,
+.mermaid .activeCritText2,
+.mermaid .activeCritText3 {
+  fill: #323D47 !important;
+}
+.mermaid .titleText {
+  text-anchor: middle;
+  font-size: 18px;
+  fill: lightgrey;
+}
+/*
+
+
+*/
+.mermaid .node text {
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 14px;
+}
+div.mermaidTooltip {
+  position: absolute;
+  text-align: center;
+  max-width: 200px;
+  padding: 2px;
+  font-family: 'trebuchet ms', verdana, arial;
+  font-size: 12px;
+  background: #6D6D65;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 100;
+}
+ </style> <link rel="stylesheet" href="file:////Users/jchun/.atom/packages/markdown-preview-enhanced/node_modules/katex/dist/katex.min.css">  </head> <body class="markdown-preview-enhanced "   > <p class="line" data-line="0">scratch</p>
+<h1 class="line" data-line="1" id="hw1">HW1</h1>
+<h2 class="line" data-line="2" id="zip">Zip</h2>
+<p class="line" data-line="3"><img src="assets/scratch-be368.png" alt=""></p>
+<h2 class="line" data-line="5" id="sliding-window-maximum">Sliding Window Maximum</h2>
+<p class="line" data-line="6"><img src="assets/scratch-ce32c.png" alt=""></p>
+<h2 class="line" data-line="8" id="clone-a-special-list">Clone a special list</h2>
+<p class="line" data-line="9"><img src="assets/scratch-a7be5.png" alt=""></p>
+<h2 class="line" data-line="11" id="merge-a-sorted-linked-list">Merge a sorted linked list</h2>
+<p class="line" data-line="12"><img src="assets/scratch-c2be2.png" alt=""></p>
+<h2 class="line" data-line="14" id="superstack">SuperStack</h2>
+<p class="line" data-line="15"><img src="assets/scratch-3033c.png" alt=""></p>
+<h2 class="line" data-line="17" id="design-and-implement-lru-cache">Design and implement LRU cache</h2>
+<p class="line" data-line="18"><img src="assets/scratch-becfc.png" alt=""></p>
+<h2 class="line" data-line="20" id="alternative-node-split">Alternative Node Split</h2>
+<p class="line" data-line="21"><img src="assets/scratch-edca7.png" alt=""></p>
+<h2 class="line" data-line="23" id="find-the-middle-element-in-a-singly-linked-list">Find the middle element in a singly linked list</h2>
+<p class="line" data-line="24"><img src="assets/scratch-7ddc0.png" alt=""></p>
+<h2 class="line" data-line="26" id="valid-matching-params">Valid matching params</h2>
+<p class="line" data-line="27"><img src="assets/scratch-f4454.png" alt=""></p>
+<h2 class="line" data-line="29" id="longest-substring-with-matching-parans">Longest substring with matching parans</h2>
+<p class="line" data-line="30"><img src="assets/scratch-10bb8.png" alt=""></p>
+<h2 class="line" data-line="32" id="swap-kth-nodes-in-linked-list">Swap kth nodes in Linked List</h2>
+<p class="line" data-line="33"><img src="assets/scratch-316bc.png" alt=""></p>
+<h2 class="line" data-line="35" id="reverse-a-linked-list-in-groups">Reverse a linked list in groups</h2>
+<p class="line" data-line="36"><img src="assets/scratch-07643.png" alt=""></p>
+<h2 class="line" data-line="38" id="duplicates-in-a-linked-list">Duplicates in a linked list</h2>
+<p class="line" data-line="39"><img src="assets/scratch-82a9b.png" alt=""></p>
+<h2 class="line" data-line="41" id="implement-min-stack">Implement Min Stack</h2>
+<p class="line" data-line="42"><img src="assets/scratch-8be0f.png" alt=""></p>
+<h1 class="line" data-line="44" id="hw1-test">HW1 test</h1>
+<p class="line" data-line="45"><img src="assets/scratch-f4ff9.png" alt=""></p>
+<p class="line" data-line="47"><img src="assets/scratch-26d13.png" alt=""></p>
+<p class="line" data-line="49"><img src="assets/scratch-56d51.png" alt=""></p>
+<h1 class="line" data-line="51" id="hw2">HW2</h1>
+<h2 class="line" data-line="52" id="tower-of-hanoi">Tower of Hanoi</h2>
+<p class="line" data-line="53"><img src="assets/scratch-c50a3.png" alt=""></p>
+<h2 class="line" data-line="55" id="wildcard">Wildcard</h2>
+<p class="line" data-line="56"><img src="assets/scratch-e801c.png" alt=""></p>
+<h2 class="line" data-line="58" id="expressionevaluator">ExpressionEvaluator</h2>
+<p class="line" data-line="59"><img src="assets/scratch-d50c2.png" alt=""></p>
+<h2 class="line" data-line="61" id="palindromic-decomposition">Palindromic Decomposition</h2>
+<p class="line" data-line="62"><img src="assets/scratch-085b3.png" alt=""></p>
+<h2 class="line" data-line="64" id="n-queens">N Queens</h2>
+<p class="line" data-line="65"><img src="assets/scratch-23ed3.png" alt=""></p>
+<h2 class="line" data-line="67" id="subset-of-a-set">Subset of a Set</h2>
+<p class="line" data-line="68"><img src="assets/scratch-acd0b.png" alt=""></p>
+<h2 class="line" data-line="70" id="diameter-of-a-tree">Diameter of a tree</h2>
+<p class="line" data-line="71"><img src="assets/scratch-cca87.png" alt=""></p>
+<h2 class="line" data-line="73" id="double-power">Double Power</h2>
+<p class="line" data-line="74"><img src="assets/scratch-60278.png" alt=""></p>
+<h4 class="line" data-line="75" id="ideas">Ideas</h4>
+<ul>
+<li><p class="line" data-line="76">Check %2 to halve amount of computation</p></li>
+</ul>
+<h2 class="line" data-line="78" id="counttrees">CountTrees</h2>
+<p class="line" data-line="79"><img src="assets/scratch-163df.png" alt=""></p>
+<h4 class="line" data-line="80" id="ideas-1">Ideas</h4>
+<ul>
+<li><p class="line" data-line="81">Let f(n) be the # of binary trees for n nodes</p></li>
+<li><p class="line" data-line="82">Therefore, f(0) = 1, f(1) = 1, f(2) = 2</p></li>
+<li><p class="line" data-line="83">Number of binary trees is the sum of possible (left subtrees of size i, and<br>
+right subtress of size (n-1-i)</p></li>
+<li><p class="line" data-line="85">Basically a summation of n for j = 0l where (n-j-1) * j</p></li>
+</ul>
+<h1 class="line" data-line="87" id="hw2-test">HW2 Test</h1>
+<h2 class="line" data-line="89" id="sum-of-integers">Sum of integers</h2>
+<p class="line" data-line="90"><img src="assets/scratch-5f408.png" alt=""></p>
+<h2 class="line" data-line="92" id="find-all-cominbations-of-well-formed-brackets">Find all cominbations of well formed brackets</h2>
+<p class="line" data-line="93"><img src="assets/scratch-db5f2.png" alt=""></p>
+<h2 class="line" data-line="95" id="recursive-reverse-of-a-string">Recursive reverse of a string</h2>
+<p class="line" data-line="96"><img src="assets/scratch-48172.png" alt=""></p>
+<h1 class="line" data-line="98" id="object-modeling">Object Modeling</h1>
+<p class="line" data-line="99"><img src="assets/scratch-92446.png" alt=""></p>
+<h1 class="line" data-line="101" id="hw3">HW3</h1>
+<h2 class="line" data-line="103" id="is-bst">Is BST</h2>
+<p class="line" data-line="104"><img src="assets/scratch-0967c.png" alt=""></p>
+<h2 class="line" data-line="106" id="merge-trees">Merge trees</h2>
+<p class="line" data-line="107"><img src="assets/scratch-318e8.png" alt=""></p>
+<h2 class="line" data-line="109" id="post-order-traversal-without-recursion">Post Order Traversal without Recursion</h2>
+<p class="line" data-line="110"><img src="assets/scratch-c2298.png" alt=""></p>
+<h2 class="line" data-line="112" id="print-all-paths-in-a-tree">Print all paths in a tree</h2>
+<p class="line" data-line="113"><img src="assets/scratch-4447b.png" alt=""></p>
+<h2 class="line" data-line="115" id="rebuild-the-tree">Rebuild the tree</h2>
+<p class="line" data-line="116"><img src="assets/scratch-9fb7e.png" alt=""></p>
+<h2 class="line" data-line="118" id="lca">LCA</h2>
+<p class="line" data-line="119"><img src="assets/scratch-5b03f.png" alt=""></p>
+<h2 class="line" data-line="121" id="tree-iterator">Tree Iterator</h2>
+<p class="line" data-line="122"><img src="assets/scratch-d3b07.png" alt=""></p>
+<h2 class="line" data-line="124" id="bst-to-double-ll">BST to double ll</h2>
+<p class="line" data-line="125"><img src="assets/scratch-4e4e9.png" alt=""></p>
+<h2 class="line" data-line="127" id="clone-a-binary-tree">Clone a binary tree</h2>
+<p class="line" data-line="128"><img src="assets/scratch-b8399.png" alt=""></p>
+<h2 class="line" data-line="130" id="populate-sibling-pointers">Populate sibling pointers</h2>
+<p class="line" data-line="131"><img src="assets/scratch-163f5.png" alt=""></p>
+<h2 class="line" data-line="133" id="flip-a-tree">Flip a tree</h2>
+<p class="line" data-line="134"><img src="assets/scratch-3f1ff.png" alt=""></p>
+<h2 class="line" data-line="136" id="largest-binary-tree">Largest binary tree</h2>
+<p class="line" data-line="137"><img src="assets/scratch-18634.png" alt=""></p>
+<h2 class="line" data-line="139" id="single-value-tree">Single value tree</h2>
+<p class="line" data-line="140"><img src="assets/scratch-d2796.png" alt=""></p>
+<h2 class="line" data-line="142" id="written-question">Written Question</h2>
+<p class="line" data-line="143"><img src="assets/scratch-cba46.png" alt=""></p>
+<h1 class="line" data-line="145" id="hw3-test">HW3 Test</h1>
+<p class="line" data-line="146"><img src="assets/scratch-e300b.png" alt=""></p>
+<p class="line" data-line="148"><img src="assets/scratch-321ee.png" alt=""></p>
+<p class="line" data-line="150"><img src="assets/scratch-b57c8.png" alt=""></p>
+<p class="line" data-line="152"><img src="assets/scratch-aaae6.png" alt=""></p>
+<p class="line" data-line="154"><img src="assets/scratch-73201.png" alt=""></p>
+<p class="line" data-line="156"><img src="assets/scratch-1e413.png" alt=""></p>
+<p class="line" data-line="158"><img src="assets/scratch-a4e4e.png" alt=""></p>
+<h2 class="line" data-line="160" id="hw-4">HW 4</h2>
+<p class="line" data-line="161"><img src="assets/scratch-5ba35.png" alt=""></p>
+<p class="line" data-line="163"><img src="assets/scratch-7a1a7.png" alt=""></p>
+<p class="line" data-line="165"><img src="assets/scratch-b0864.png" alt=""></p>
+<p class="line" data-line="167"><img src="assets/scratch-e6d43.png" alt=""></p>
+<p class="line" data-line="169"><img src="assets/scratch-c0d6c.png" alt=""></p>
+<p class="line" data-line="171"><img src="assets/scratch-f569c.png" alt=""></p>
+<p class="line" data-line="173"><img src="assets/scratch-2c384.png" alt=""></p>
+<p class="line" data-line="175"><img src="assets/scratch-9dccf.png" alt=""></p>
+<p class="line" data-line="177"><img src="assets/scratch-6b3a1.png" alt=""></p>
+<p class="line" data-line="179"><img src="assets/scratch-a7c77.png" alt=""></p>
+<p class="line" data-line="181"><img src="assets/scratch-47361.png" alt=""></p>
+<p class="line" data-line="183"><img src="assets/scratch-5ec43.png" alt=""></p>
+<p class="line" data-line="185"><img src="assets/scratch-05155.png" alt=""></p>
+<h2 class="line" data-line="187" id="hw-4-test">HW 4 Test</h2>
+<p class="line" data-line="188"><img src="assets/scratch-2e52f.png" alt=""></p>
+<p class="line" data-line="190"><img src="assets/scratch-5f5b9.png" alt=""></p>
+<h2 class="line" data-line="192" id="hw-5">HW 5</h2>
+<p class="line" data-line="193"><img src="assets/scratch-95dd8.png" alt=""></p>
+<p class="line" data-line="195"><img src="assets/scratch-d1f42.png" alt=""></p>
+<p class="line" data-line="197"><img src="assets/scratch-e433a.png" alt=""></p>
+<p class="line" data-line="199"><img src="assets/scratch-3338f.png" alt=""></p>
+<p class="line" data-line="201"><img src="assets/scratch-ddfa9.png" alt=""></p>
+<p class="line" data-line="203"><img src="assets/scratch-32566.png" alt=""></p>
+<p class="line" data-line="205"><img src="assets/scratch-791e3.png" alt=""></p>
+<p class="line" data-line="207"><img src="assets/scratch-53948.png" alt=""></p>
+<p class="line" data-line="209"><img src="assets/scratch-4f6cc.png" alt=""></p>
+<p class="line" data-line="211"><img src="assets/scratch-802dc.png" alt=""></p>
+<h2 class="line" data-line="213" id="hw-5-test">HW 5 Test</h2>
+<p class="line" data-line="214"><img src="assets/scratch-e407d.png" alt=""></p>
+<p class="line" data-line="216">ANS<br>
+<img src="assets/scratch-da70e.png" alt=""></p>
+<p class="line" data-line="219"><img src="assets/scratch-cf089.png" alt=""></p>
+<p class="line" data-line="221"><img src="assets/scratch-e2042.png" alt=""></p>
+<p class="line" data-line="223"><img src="assets/scratch-e7fa2.png" alt=""></p>
+<p class="line" data-line="225"><img src="assets/scratch-4b12b.png" alt=""></p>
+<p class="line" data-line="227"><img src="assets/scratch-b5c74.png" alt=""></p>
+<p class="line" data-line="229"><img src="assets/scratch-c4082.png" alt=""></p>
+<h2 class="line" data-line="231" id="hw-6">HW 6</h2>
+<p class="line" data-line="232"><img src="assets/scratch-793f2.png" alt=""></p>
+<p class="line" data-line="234"><img src="assets/scratch-4af7d.png" alt=""></p>
+<p class="line" data-line="236"><img src="assets/scratch-a7a71.png" alt=""></p>
+<p class="line" data-line="238"><img src="assets/scratch-563f7.png" alt=""></p>
+<p class="line" data-line="240"><img src="assets/scratch-a90c0.png" alt=""></p>
+<p class="line" data-line="242"><img src="assets/scratch-c11e2.png" alt=""></p>
+<p class="line" data-line="244"><img src="assets/scratch-1a948.png" alt=""></p>
+<p class="line" data-line="246"><img src="assets/scratch-47c99.png" alt=""></p>
+<p class="line" data-line="248"><img src="assets/scratch-aa442.png" alt=""></p>
+<p class="line" data-line="250"><img src="assets/scratch-6f64d.png" alt=""></p>
+<p class="line" data-line="252"><img src="assets/scratch-5de04.png" alt=""></p>
+<p class="line" data-line="254"><img src="assets/scratch-26c06.png" alt=""></p>
+<p class="line" data-line="256"><img src="assets/scratch-33964.png" alt=""></p>
+<h2 class="line" data-line="258" id="hw-6-test">HW 6 Test</h2>
+<p class="line" data-line="259"><img src="assets/scratch-24010.png" alt=""></p>
+<p class="line" data-line="261"><img src="assets/scratch-7bc0a.png" alt=""></p>
+<p class="line" data-line="263"><img src="assets/scratch-5c24f.png" alt=""></p>
+<h2 class="line" data-line="265" id="hw-7">HW 7</h2>
+<p class="line" data-line="266"><img src="assets/scratch-7b34a.png" alt=""></p>
+<p class="line" data-line="268"><img src="assets/scratch-df6ff.png" alt=""></p>
+<p class="line" data-line="270"><img src="assets/scratch-88aa8.png" alt=""></p>
+<p class="line" data-line="272"><img src="assets/scratch-ee044.png" alt=""></p>
+<p class="line" data-line="274"><img src="assets/scratch-61bbe.png" alt=""></p>
+<p class="line" data-line="276"><img src="assets/scratch-9325d.png" alt=""></p>
+<p class="line" data-line="278"><img src="assets/scratch-b4ca4.png" alt=""></p>
+<p class="line" data-line="280"><img src="assets/scratch-20cbb.png" alt=""></p>
+<p class="line" data-line="282"><img src="assets/scratch-7f4e1.png" alt=""></p>
+<h2 class="line" data-line="284" id="hw-7-test">HW 7 Test</h2>
+<p class="line" data-line="285"><img src="assets/scratch-318b2.png" alt=""></p>
+<p class="line" data-line="287"><img src="assets/scratch-63710.png" alt=""></p>
+<p class="line" data-line="289"><img src="assets/scratch-d03b9.png" alt=""></p>
+<h2 class="line" data-line="291" id="hw-8">HW 8</h2>
+<p class="line" data-line="293"><img src="assets/scratch-6c92b.png" alt=""></p>
+<p class="line" data-line="295"><img src="assets/scratch-d979d.png" alt=""></p>
+<p class="line" data-line="297"><img src="assets/scratch-66018.png" alt=""></p>
+<p class="line" data-line="299"><img src="assets/scratch-d97d7.png" alt=""></p>
+<p class="line" data-line="301"><img src="assets/scratch-d794a.png" alt=""></p>
+<p class="line" data-line="303"><img src="assets/scratch-487dd.png" alt=""></p>
+<p class="line" data-line="305"><img src="assets/scratch-ad360.png" alt=""></p>
+<p class="line" data-line="307"><img src="assets/scratch-50ffb.png" alt=""></p>
+<p class="line" data-line="309"><img src="assets/scratch-5aae3.png" alt=""></p>
+<p class="line" data-line="311"><img src="assets/scratch-0854f.png" alt=""></p>
+<h2 class="line" data-line="313" id="hw-8-test">HW 8 Test</h2>
+<p class="line" data-line="315"><img src="assets/scratch-40877.png" alt=""></p>
+<p class="line" data-line="317"><img src="assets/scratch-f74b3.png" alt=""></p>
+<h1 class="line" data-line="319" id="pramp">Pramp</h1>
+<h2 class="line" data-line="321" id="interview-1-instructor">Interview 1 Instructor</h2>
+<p class="line" data-line="322">Smallest Substring of All Characters</p>
+<p class="line" data-line="324">Given an array with unique characters arr and a string str, find the smallest substring of str containing all characters of arr.</p>
+<p class="line" data-line="326">Example:<br>
+arr: [x,y,z], str: xyyzyzyx<br>
+result: zyx</p>
+<p class="line" data-line="330">Implement your solution and analyze the runtime complexity</p>
+<p class="line" data-line="332">Hints &amp; Tips<br>
+If your peer is stuck, ask how can we determine if a given substring is valid (all chars from set are in it) and then ask how to apply that to a solution</p>
+<p class="line" data-line="335">If your peer is using a naive solution of checking all possible substrings, try to ask how can you avoid duplicate work</p>
+<p class="line" data-line="337">Make sure proper initializations are made</p>
+<p class="line" data-line="339">Watch for unnecessary variables and steps</p>
+<p class="line" data-line="341">For other solutions, make sure that any permutation of the characters in set can be found by the algorithm</p>
+<p class="line" data-line="343">make sure your peer understand why we should increase tail only after head is increased</p>
+<p class="line" data-line="345">Solution<br>
+We iterate the string from left to right, while using two indices - tailIndex and h.<br>
+At each iteration step, we examine the temp substring  [str.charAt(tailIndex), str.charAt(tailIndex+1) …, str.charAt(h)]  and keep a copy of the shortest vaild substring we’ve seen so far.</p>
+<p class="line" data-line="349">To examine substrings we use 2 counters:<br>
+uniqueCounter (integer) - number of unique characters of arr in our temp substring<br>
+countMap (map/object/associative array - depends of your language of choice) - number of occurrences of each char from arr in our substring</p>
+<p class="line" data-line="353">function getShortestUniqueSubstring(arr, str):<br>
+t = 0<br>
+result = null<br>
+uniqueCounter = 0<br>
+countMap = new Map()</p>
+<h1 class="line" data-line="358" id="initialize-countmap">initialize countMap:</h1>
+<p class="line" data-line="359">for i from 0 to length(arr)-1:<br>
+countMap.setValueOf(arr[i], 0)</p>
+<h1 class="line" data-line="361" id="scan-str">scan str</h1>
+<p class="line" data-line="362">for h from 0 to length(str)-1:<br>
+# handle the new head<br>
+head = str.charAt(h)<br>
+if countMap.keyExists(head) == false:<br>
+continue<br>
+headCount = countMap.getValueOf(head)<br>
+if headCount == 0:<br>
+uniqueCounter = uniqueCounter + 1<br>
+countMap.setValueOf(head, headCount + 1)<br>
+# push tail forward<br>
+while uniqueCounter == length(arr):<br>
+tempLength = h - t + 1<br>
+if tempLength == arr.length:<br>
+return str.substring(t, h)<br>
+if (!result or tempLength &lt; length(result)):<br>
+result = str.substring(t, h)<br>
+tail = str.charAt(t)<br>
+if countMap.keyExists(tail):<br>
+tailCount = countMap.getValueOf(tail) - 1<br>
+if tailCount == 0:<br>
+uniqueCounter = uniqueCounter - 1<br>
+countMap.setValueFor(tail, tailCount)<br>
+t = t + 1<br>
+return result<br>
+Runtime Complexity: we’re doing a linear iteration of both str and arr of lengths n and m respectively, so the runtime complexity is a linear O(n+m).</p>
+<p class="line" data-line="388">Space Complexity: depends of your implementation for the mapping, but generally: we’re using countMap with m keys (the length of arr) plus few constant size counters - O(m) space complexity.</p>
+<hr>
+<h2 class="line" data-line="392" id="interview-1-interviewee">Interview 1 Interviewee</h2>
+<p class="line" data-line="393">The “Award Budget Cuts” Problem</p>
+<p class="line" data-line="395">The awards committee had planned to give n research grants this year, out of a its total yearly budget.<br>
+However, the budget was reduced to b dollars. The committee members has decided to affect the minimal number of highest grants, by applying a maximum cap c on all grants: every grant that was planned to be higher than c will now be c dollars.<br>
+Help the committee to choose the right value of c that would make the total sum of grants equal to the new budget.</p>
+<p class="line" data-line="399">Given an array of grants g and a new budget b, explain and code an efficient method to find the cap c. Assume that each grant is unique.<br>
+Analyze the time and space complexity of your solution.</p>
+<h2 class="line" data-line="402" id="solution">??? SOLUTION?</h2>
+<h2 class="line" data-line="405" id="interview-2-instructor">Interview 2 Instructor</h2>
+<p class="line" data-line="406">K-Messed Array Sort</p>
+<p class="line" data-line="408">Given an array arr of length n where each element is at most k places away from its sorted position,<br>
+Plan and code an efficient algorithm to sort arr.<br>
+Analyze the runtime and space complexity of your solution.</p>
+<p class="line" data-line="412">Example: n=10, k=2. The element belonging to index 6 in the sorted array, may be at indices 4, 5, 6, 7 or 8 on the given array.</p>
+<p class="line" data-line="414">Hints &amp; Tips<br>
+Try to help your peer think about the advantages of this nearly k-sorted array. Then ask how can it be useful.</p>
+<p class="line" data-line="417">As a hint ask your peer, for the 0-index place on the array, how far can the item that belongs there be, and how can that be generalized (building the iterative step).</p>
+<p class="line" data-line="419">This question is a good opprtunity to check if your peer remebers what are insertion sort and heap sort, and for you both to brush up on that. A good source to get that covered is Sorting Algorithm article on Wikipedia.</p>
+<p class="line" data-line="421">If your peer does not know about insertion sort or heap sort, make sure his knowledge section on the interview feedback reflect that</p>
+<p class="line" data-line="423">To get the best feedback rating on the problem solving section your peer should plan, explain and execute an O(n • log k) solution</p>
+<p class="line" data-line="425">If min-heap doesn’t exist on the interview’s coding language let your use a min-heap object as if it exists:<br>
+Valid operations are new MinHeap(), extractMin() and insert()</p>
+<p class="line" data-line="428">Watch for correct calculations and usage of array indices</p>
+<p class="line" data-line="430">If your peer is completely stuck, help the thought process by asking what can you do with a sliding window of size k+1</p>
+<p class="line" data-line="432">If relevant data structures (heap or others used by your peer) don’t exist in your language of choice, you can assume their existence once your peer explain their concepts and operations and you both agree on its API.</p>
+<p class="line" data-line="434">Solution<br>
+The suboptimal approach to solve is by using Insertion Sort:<br>
+We iterate the arr from left to right:<br>
+On each iteration we bring arr[i] to its place in the subarray arr[0,1,2 … i], by shifting any subarray elements that are bigger than A[i] one place right.</p>
+<p class="line" data-line="439">function insertionSort(arr):<br>
+for i from 1 to arr.length-1:<br>
+x = arr[i]<br>
+j = i-1<br>
+while (j &gt;= 0 and arr[j] &gt; x):<br>
+arr[j+1] = arr[j]<br>
+j–<br>
+arr[j+1] = x<br>
+return arr<br>
+Runtime complexity: iteration over array of length n and switching at most k pairs for each iteration (by definition of the given array), takes O(n • k).<br>
+If k is constant and relatively small we can argue that it’s actually close to a linear O(n) case.</p>
+<p class="line" data-line="451">Space complexity: constant O(1), all we need is 2 indices.</p>
+<p class="line" data-line="454">However, we can do better:</p>
+<p class="line" data-line="456">If we use a modified Heap Sort we can get better runtime complexity:<br>
+We define a virtual ‘sliding window’ of from the first k+1 elements of arr.<br>
+First we build a min heap from the elements in the window.<br>
+Then, we start sliding: on each step we extract the minimum from the heap, move the window one place right, place the min we’ve extracted into index that is now left to the window and insert the new element at the end of the window to the heap. We repeat that until the window reaches the end of the array, then we extract the minimum from the heap and place it on the next index of arr, until the heap is empty.</p>
+<p class="line" data-line="461">function kHeapSort(arr, k)<br>
+h = new MinHeap()<br>
+n = length(arr)<br>
+for i from 0 to k:<br>
+h.insert(arr[i])<br>
+for i from k+1 to n-1:<br>
+arr[i-(k+1)] = h.extractMin()<br>
+h.insert(arr[i])<br>
+for i from 0 to k:<br>
+arr[n-k-1 + i] = h.extractMin()<br>
+return arr<br>
+Runtime complexity:<br>
+Building a heap takes linear O(k) for k+1 elements.<br>
+Operating the heap later involves extracting min on a min-heap / inserting to the heap. These actions take O(log k) each. We do at least one of these actions n times, so the cost here is O(n • log k).<br>
+the overall runtime complexity of the heap solution is O(n • log k). again, if k is constant, we may argue the complexity is close to linear.</p>
+<p class="line" data-line="477">Space complexity:<br>
+we need to hold a min heap of  k+1 elements.<br>
+Since a heap is usually implemented with an array the space complexity is O(k+1).<br>
+However, we can implement and maintain the heap manually on our conceptual sliding window subarray. If we handled right, it can lead us to a constant O(1) space complexity.</p>
+<hr>
+<h2 class="line" data-line="483" id="interview-2-interviewee">Interview 2 Interviewee</h2>
+<p class="line" data-line="485">The “Quad Combination” Problem</p>
+<p class="line" data-line="487">Given an array of numbers arr and a number S, find 4 different numbers in arr that sum up to S.</p>
+<p class="line" data-line="489">Write a function that gets arr and S and returns an array with 4 indices of such numbers in arr, or null if no such combination exists.<br>
+Explain and code the most efficient solution possible, and analyze its runtime and space complexity.</p>
+<p class="line" data-line="492">Solution</p>
+<p class="line" data-line="494">The naive solution is to iterate on every possible combination of 4 numbers from arr until the required combination if found. Using 4 nested loop involves O(n4) time complexity and O(1) space complexity. This is quite inefficient.</p>
+<p class="line" data-line="496">We can do better, if we look at all the pairs in arr, and then try to build the sum S from 2 different pairs.<br>
+First, we iterate over all the possible pairs in arr with 2 nested loops and hash each pair by its sum. Then, for each pairSum in the pairs hash table, we look for its complement S - pairSum. When we find two pairs that sum up to S, we need to check that these pairs are drawn from 4 different indices in arr (in other words: that no number is used twice to reach the desired sum).</p>
+<p class="line" data-line="499">function findArrayQuadCombination(arr, S):<br>
+if (arr == null OR S == null):<br>
+return null<br>
+n = length(arr)<br>
+if (n &lt; 4):<br>
+return null</p>
+<h1 class="line" data-line="505" id="hashing-implementation-language-dependent">hashing implementation language dependent:</h1>
+<p class="line" data-line="506">pairHash = new HashTable()<br>
+for i from 0 to n-1<br>
+for j from i+1 to n-1<br>
+if !pairHash.isMapped(arr[i]+arr[j]):<br>
+pairHash.map(arr[i]+arr[j], [])<br>
+pairHash.get(arr[i]+arr[j]).push([i, j])</p>
+<p class="line" data-line="513">for pairSum in pairHash.getKeys()<br>
+if pairHash.isMapped(S - pairSum):<br>
+pairsA = pairHash.get(pairSum)<br>
+pairsB = pairHash.get(S - pairsSum)<br>
+combination = find4Uniques(pairsA, pairsB)<br>
+if (combination != null):<br>
+return combination<br>
+return null</p>
+<h1 class="line" data-line="522" id="helper-function">Helper function.</h1>
+<h1 class="line" data-line="523" id="gets-2-arrays-of-sub-arrays-of-2-numbers">Gets 2 arrays of sub-arrays of 2 numbers</h1>
+<h1 class="line" data-line="524" id="gets-4-unique-numbers-from-2-sub-arrays-of-different-arrays">Gets 4 unique numbers, from 2 sub-arrays of different arrays</h1>
+<p class="line" data-line="525">function find4Uniques(A, B):<br>
+lenA = length(A)<br>
+lenB = length(B)<br>
+for i from 0 to lenA-1:<br>
+for j from 0 to lenB-1:<br>
+if ( A[i][0] == B[j][0] OR A[i][1] == B[j][1] OR<br>
+A[i][0] == B[j][1] OR A[i][1] == B[j][0] ):<br>
+continue<br>
+else:<br>
+return [A[i][0], A[i][1], B[j][0], B[j][1]]<br>
+return null</p>
+<p class="line" data-line="537">Time Complexity: Let n be the length or arr. Hashing all pairs in arr by their sum and iterating over all sums and their complements takes O(n2) time (n2 pairs and constant number of actions for each). Uniqueness check for all indices of the pairs of sums that adds up to S until a valid combination is found, is also O(n2) (checking at most n2 pairs with 4 comparisons for each). Overall: quadratic O(n2) time complexity.</p>
+<h2 class="line" data-line="539" id="space-complexity-n2-pairs-have-up-to-n2-different-sums-hashing-them-takes-on2-space-complexity">Space Complexity: n2 pairs have up to n2 different sums. Hashing them takes O(n2) space complexity.</h2>
+<h2 class="line" data-line="542" id="interview-3-interviewee">Interview 3 Interviewee</h2>
+<p class="line" data-line="544">function findComplementingWeights(arr, limit):<br>
+h = new hashTable()<br>
+for (index, w) in arr:<br>
+complementIndex = h.findKey(limit - w)<br>
+if (complementIndex != null):<br>
+return [index, complementIndex]<br>
+else:<br>
+h.insert(w, index)<br>
+return -1</p>
+<hr>
+<h2 class="line" data-line="557" id="interview-4-interviewee">Interview 4 Interviewee</h2>
+<p class="line" data-line="559">class Pramp {</p>
+<p class="line" data-line="561">static void print(int[][] M) {<br>
+printHelper(M, M[0].length, M.length, 0, 0);<br>
+}</p>
+<p class="line" data-line="565">static void printHelper(int[][] M, int n, int m, int row, int col) {</p>
+<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>if&nbsp;(row&nbsp;&gt;&nbsp;m&nbsp;/&nbsp;2&nbsp;||&nbsp;col&nbsp;&gt;&nbsp;n&nbsp;/&nbsp;2)&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>return;</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>}</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>/*</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;int&nbsp;left&nbsp;=&nbsp;0,&nbsp;right&nbsp;=&nbsp;M[0].length-1,&nbsp;top&nbsp;=&nbsp;0,&nbsp;bottom&nbsp;=&nbsp;M.length-1;</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>for&nbsp;(int&nbsp;j=left;&nbsp;j&lt;=right;&nbsp;j++)&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>print(M[0][j]);</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>}</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>top&nbsp;++;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;for&nbsp;(int&nbsp;i=top;&nbsp;i&lt;=bottom;&nbsp;i++)</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>print(M[][]);</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>right&nbsp;--;</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span class="meta bullet-point star text"><span>&nbsp;&nbsp;</span><span class="punctuation definition item text"><span>*</span></span><span>/</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>//&nbsp;Print&nbsp;top</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;for&nbsp;(int&nbsp;j&nbsp;=&nbsp;row;&nbsp;j&nbsp;&lt;&nbsp;n&nbsp;-&nbsp;col;&nbsp;j++)&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>System.out.println(M[row][j]);</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>}</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>//&nbsp;Print&nbsp;right&nbsp;column</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;for&nbsp;(int&nbsp;i&nbsp;=&nbsp;row&nbsp;+&nbsp;1;&nbsp;i&nbsp;&lt;&nbsp;m&nbsp;-&nbsp;(row&nbsp;+&nbsp;1);&nbsp;i++)&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>System.out.println(M[i][col]);</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>}</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>//&nbsp;Print&nbsp;bottom</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;for&nbsp;(int&nbsp;j&nbsp;=&nbsp;n&nbsp;-&nbsp;col&nbsp;-&nbsp;1;&nbsp;j&nbsp;&gt;=&nbsp;col;&nbsp;j--)&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>System.out.println(M[m-row-1][j]);</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>}</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>//&nbsp;Print&nbsp;left&nbsp;column</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;for&nbsp;(int&nbsp;i&nbsp;=&nbsp;m&nbsp;-&nbsp;row;&nbsp;i&nbsp;&gt;&nbsp;row;&nbsp;i--)&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>System.out.println(M[i][col]);</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>}</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>printHelper(M,&nbsp;n,&nbsp;m,&nbsp;row&nbsp;+&nbsp;1,&nbsp;col&nbsp;+&nbsp;1);</span></span></span></div></pre>
+<p class="line" data-line="608">}</p>
+<p class="line" data-line="610">public static void main(String[] args) {<br>
+String pramp = &quot;Practice Makes Perfect&quot;;<br>
+System.out.println(pramp);<br>
+}<br>
+}*/</p>
+<hr>
+<h2 class="line" data-line="618" id="interview-5-interviewee">Interview 5 Interviewee</h2>
+<p class="line" data-line="620">islands question</p>
+<hr>
+<h2 class="line" data-line="624" id="interview-6-interviewee">Interview 6 Interviewee</h2>
+<p class="line" data-line="626">arrays question</p>
+<h2 class="line" data-line="629" id="interview-7-interviewee">Interview 7 Interviewee</h2>
+<p class="line" data-line="631">The “Word Count Engine” Problem</p>
+<p class="line" data-line="633">Implement a document scanning engine that receives a text document doc and returns a list of all unique words in it and their number of occurrences, sorted by the number of occurrences in descending order.</p>
+<p class="line" data-line="635">Example:<br>
+for doc: “practice makes perfect. get perfect by practice. just practice!”<br>
+the engine returns the list: { practice: 3, perfect: 2,  makes: 1, get: 1, by: 1, just: 1 }.</p>
+<p class="line" data-line="639">The engine should ignore punctuation and white-spaces.<br>
+Find the minimal runtime complexity and analyze it.</p>
+<p class="line" data-line="642">static class Result {<br>
+String word;<br>
+int count;<br>
+public Result(String word, int count) {<br>
+this.word = word;<br>
+this.count = count<br>
+}<br>
+}</p>
+<p class="line" data-line="651">static List<result> wordCount(List<string> doc) {</string></result></p>
+<p class="line" data-line="653">List<result> result = new ArrayList&lt;&gt;();</result></p>
+<p class="line" data-line="655">Map&lt;String, Integer&gt; textToCount = new HashMap&lt;&gt;();<br>
+TreeMap&lt;Integer, List<string>&gt; reverseMap = new TreeMap&lt;&gt;();<br>
+for (String word : doc) {<br>
+if (!textToCount.containsKey(word)) {<br>
+textToCount.put(word, 0);<br>
+}</string></p>
+<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>int&nbsp;currCount&nbsp;=&nbsp;textToCount.get(word);</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;int&nbsp;newCount&nbsp;=&nbsp;currCount&nbsp;+&nbsp;1;</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>if&nbsp;(!reverseMap.containsKey(newCount))&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>reverseMap.put(newCount,&nbsp;new&nbsp;ArrayList&lt;&gt;());</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>}</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;</span><span class="meta paragraph text"><span>reverseMap.get(newCount).add(word);</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;textToCount.put(word,&nbsp;textToCount.get(word)&nbsp;+&nbsp;1);</span></span></span></div></pre>
+<p class="line" data-line="671">}</p>
+<p class="line" data-line="673">// Output<br>
+Set<string> printed = new HashSet&lt;&gt;();<br>
+for (Integer count : reverseMap.descendingKeySet()) {<br>
+List<string> words = reverseMap.get(count);<br>
+for (String word : words) {<br>
+if (!printed.contains(word)) {<br>
+result.add(new Result(word, count));<br>
+printed.add(word);<br>
+}<br>
+}</string></string></p>
+<p class="line" data-line="684">}<br>
+return result;<br>
+}</p>
+<hr>
+<h2 class="line" data-line="690" id="interviewee-8">Interviewee 8</h2>
+<p class="line" data-line="692">The “Busiest Time in The Mall” Problem</p>
+<p class="line" data-line="694">The mall management is trying to figure out what was the busiest moment in the mall in the last year.<br>
+You are given data from the door detectors: each data entry includes a timestamp (seconds in Unix Epoch format), an amount of people and whether they entered or exited.</p>
+<p class="line" data-line="697">Example of a data entry:<br>
+{ time: 1440084737,  count: 4,  type: “enter” }</p>
+<p class="line" data-line="700">Find what was the busiest period in the mall on the last year. Return an array with two Epoch timestamps representing the beginning and end of that period. You may assume that the data your are given is accurate and that each second with entries or exits is recorded. Implement the most efficient solution possible and analyze its time and space complexity.</p>
+<hr>
+<h2 class="line" data-line="705" id="interviewee-9">Interviewee 9</h2>
+<p class="line" data-line="706">The “BST Successor Search” Problem</p>
+<p class="line" data-line="708">Given a node n in a binary search tree, explain and code the most efficient way to find the successor of n.<br>
+Analyze the runtime complexity of your solution.</p>
+<hr>
+<h2 class="line" data-line="713" id="interviewee-10">Interviewee 10</h2>
+<p class="line" data-line="714">Dictionary print thing</p>
+<p class="line" data-line="716">Given a node n in a binary search tree, explain and code the most efficient way to find the successor of n.<br>
+Analyze the runtime complexity of your solution.</p>
+<hr>
+<h1 class="line" data-line="722" id="interviewio">Interview.io</h1>
+<h1 class="line" data-line="724" id="steps-question-recursively">Steps question, recursively</h1>
+<h1 class="line" data-line="726" id="generate-prime-factorization">generate prime factorization</h1>
+<hr>
+<h1 class="line" data-line="731" id="divya-1">Divya 1</h1>
+<p class="line" data-line="733">pacific, atlantic, dfs<br>
+Given BST and a target value. Count the number of pairs of values which sum to the target value.</p>
+<p class="line" data-line="736">Given BST and a target value. Count the number of pairs of values which sum to the target value.</p>
+<p class="line" data-line="738">Ex:          0<br>
+-2   4<br>
+-2   4  5<br>
+-3        6<br>
+11<br>
+target = 4<br>
+output: 2 (0,4) (6,-2)</p>
+<p class="line" data-line="747">// n is # nodes<br>
+// For each node in tree: O(n)<br>
+//     val = node.val<br>
+//     Find if target - val exists O(logn)<br>
+// Final dedup step, O(n)</p>
+<p class="line" data-line="753">// Runtime : O(nlogn)<br>
+// Space: O(n^2) – due to no dedup</p>
+<p class="line" data-line="756">// Traverse tree once, both ends<br>
+// (-3, 11), t = 4,<br>
+// (-3, 11)</p>
+<p class="line" data-line="760">// Case 1: assuming no duplicates, move both pointers to sucessor and predecessor<br>
+// Case 2: val &gt; targer, where val is sum of pointers<br>
+// Case 3:</p>
+<p class="line" data-line="766">// Recursive function that returns leftmost node, rightmost node in an LL<br>
+// Base case: single BST leaf node: {node, node}<br>
+//</p>
+<p class="line" data-line="770">static class Spine {<br>
+Node precursor;<br>
+Node successor;<br>
+}</p>
+<p class="line" data-line="776">Ex:          0<br>
+-2   4<br>
+-2   4  5<br>
+-3        6<br>
+11</p>
+<p class="line" data-line="783">static Spine convertBST(Node n) {<br>
+if (n == null) {<br>
+return null;<br>
+}</p>
+<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>if&nbsp;(n.left&nbsp;==&nbsp;null&nbsp;&amp;&amp;&nbsp;n.right&nbsp;==&nbsp;null)&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>return&nbsp;new&nbsp;Spine(n,&nbsp;n);</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>}</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Spine&nbsp;right&nbsp;=&nbsp;convertBST(n.right);</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Spine&nbsp;left&nbsp;=&nbsp;convertBST(n.left);</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>//&nbsp;Link&nbsp;the&nbsp;spines&nbsp;up</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>n.left&nbsp;=&nbsp;left.sucessor;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>if&nbsp;(left&nbsp;!=&nbsp;null&nbsp;&amp;&amp;&nbsp;left.sucessor&nbsp;!=&nbsp;null)&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>left.sucessor.right&nbsp;=&nbsp;n;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>}</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>n.right&nbsp;=&nbsp;right.precursor;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>if&nbsp;(right&nbsp;!=&nbsp;null&nbsp;&amp;&amp;&nbsp;right.precursor&nbsp;!=&nbsp;null)&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>right.precursor.left&nbsp;=&nbsp;n;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>}</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>//&nbsp;Return&nbsp;the&nbsp;linked&nbsp;up&nbsp;spine</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>return&nbsp;new&nbsp;Spine(left.precursor,&nbsp;right.sucessor);</span></span></span></div></pre>
+<p class="line" data-line="807">}</p>
+<p class="line" data-line="809">// Returns the head of the new LL<br>
+static Spine convertToLL(Node n) {<br>
+return convertBST(n); // head and tail of LL<br>
+}</p>
+<p class="line" data-line="815">l                  r<br>
+-3 -2 -2 0 4 5 6 11</p>
+<p class="line" data-line="819">-4</p>
+<p class="line" data-line="822">target = 8<br>
+-3, 11, val = 8, count = 1<br>
+-2, 6, val = 4, count = 1,<br>
+-2, 6, val = 4, count = 1,<br>
+0, 6, val = 6, count = 1,<br>
+4, 6, val = 10, count = 1,<br>
+4, 5, val = 9, count = 1,<br>
+4, 4, val = 8, count = 2,</p>
+<p class="line" data-line="832">static int countPairs(Node root, int target) {<br>
+if (root == null) {<br>
+throw new IllegalArgumentException();<br>
+}</p>
+<pre class="editor-colors lang-text"><div class="line"><span class="text plain"><span class="meta paragraph text"><span>int&nbsp;count&nbsp;=&nbsp;0;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Spine&nbsp;spine&nbsp;=&nbsp;convertToLL(root);</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Node&nbsp;leftN&nbsp;=&nbsp;spine.precursor;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>Node&nbsp;rightN&nbsp;=&nbsp;spine.sucessor;</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>while&nbsp;(leftN&nbsp;!=&nbsp;rightN&nbsp;&amp;&amp;&nbsp;rightN.right&nbsp;!=&nbsp;leftN)&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>int&nbsp;val&nbsp;=&nbsp;leftN.val&nbsp;+&nbsp;rightN.val;</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;</span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>//&nbsp;Move&nbsp;both&nbsp;pointers&nbsp;inward&nbsp;if&nbsp;val&nbsp;==&nbsp;target</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(val&nbsp;==&nbsp;target)&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>count++;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leftN&nbsp;=&nbsp;leftN.right;</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rightN&nbsp;=&nbsp;rightN.left;</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>}&nbsp;else&nbsp;if&nbsp;(val&nbsp;&lt;&nbsp;target)&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>//&nbsp;Increase&nbsp;val&nbsp;by&nbsp;moving&nbsp;left&nbsp;pointer&nbsp;inward</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leftN&nbsp;=&nbsp;leftN.right;</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>}&nbsp;else&nbsp;{</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>//&nbsp;Decrease&nbsp;val&nbsp;by&nbsp;moving&nbsp;right&nbsp;pointer&nbsp;inward</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rightN&nbsp;=&nbsp;rightN.left;</span></span></span></div><div class="line"><span class="text plain"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta paragraph text"><span>}</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>}</span></span></span></div><div class="line"><span class="text plain"><span class="meta paragraph text"><span>return&nbsp;count;</span></span></span></div></pre>
+<p class="line" data-line="859">}</p>
+<p class="line" data-line="863"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mrow><mi>μ</mi></mrow></msub></mrow><annotation encoding="application/x-tex">R_{\mu}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.68333em;"></span><span class="strut bottom" style="height:0.969438em;vertical-align:-0.286108em;"></span><span class="base displaystyle textstyle uncramped"><span class="mord"><span class="mord mathit" style="margin-right:0.00773em;">R</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:-0.00773em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord scriptstyle cramped"><span class="mord mathit">μ</span></span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span></span></span></span></span></p>
+<pre class="editor-colors lang-java"><div class="line"><span class="source java"><span class="storage modifier java"><span>static</span></span><span>&nbsp;</span><span class="storage type object array java"><span>String</span><span class="punctuation bracket square java"><span>[</span><span>]</span></span></span><span>&nbsp;</span><span class="meta function-call java"><span class="entity name function java"><span>palindromicDecomposition</span></span><span class="punctuation definition parameters begin bracket round java"><span>(</span></span><span class="storage type java"><span>String</span></span><span>&nbsp;str</span><span class="punctuation definition parameters end bracket round java"><span>)</span></span></span><span>&nbsp;</span><span class="punctuation section block begin bracket curly java"><span>{</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;</span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="storage type java"><span>Deque</span></span><span class="punctuation bracket angle java"><span>&lt;</span></span><span class="storage type generic java"><span>Interval</span></span><span class="punctuation bracket angle java"><span>&gt;</span></span><span>&nbsp;curr&nbsp;</span><span class="keyword operator assignment java"><span>=</span></span><span>&nbsp;</span><span class="keyword control new java"><span>new</span></span><span>&nbsp;</span><span class="storage type java"><span>LinkedList</span></span><span class="punctuation bracket angle java"><span>&lt;</span><span>&gt;</span></span><span class="punctuation bracket round java"><span>(</span><span>)</span></span><span class="punctuation terminator java"><span>;</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="storage type java"><span>List</span></span><span class="punctuation bracket angle java"><span>&lt;</span></span><span class="storage type java"><span>List</span></span><span class="punctuation bracket angle java"><span>&lt;</span></span><span class="storage type generic java"><span>String</span></span><span class="punctuation bracket angle java"><span>&gt;</span><span>&gt;</span></span><span>&nbsp;results&nbsp;</span><span class="keyword operator assignment java"><span>=</span></span><span>&nbsp;</span><span class="keyword control new java"><span>new</span></span><span>&nbsp;</span><span class="storage type java"><span>LinkedList</span></span><span class="punctuation bracket angle java"><span>&lt;</span><span>&gt;</span></span><span class="punctuation bracket round java"><span>(</span><span>)</span></span><span class="punctuation terminator java"><span>;</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;</span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta function-call java"><span class="entity name function java"><span>generatePalindromes</span></span><span class="punctuation definition parameters begin bracket round java"><span>(</span></span><span>results</span><span class="punctuation separator delimiter java"><span>,</span></span><span>&nbsp;curr</span><span class="punctuation separator delimiter java"><span>,</span></span><span>&nbsp;</span><span class="constant numeric java"><span>0</span></span><span class="punctuation separator delimiter java"><span>,</span></span><span>&nbsp;str</span><span class="punctuation definition parameters end bracket round java"><span>)</span></span></span><span class="punctuation terminator java"><span>;</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;</span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="storage type java"><span>List</span></span><span class="punctuation bracket angle java"><span>&lt;</span></span><span class="storage type generic java"><span>String</span></span><span class="punctuation bracket angle java"><span>&gt;</span></span><span>&nbsp;result&nbsp;</span><span class="keyword operator assignment java"><span>=</span></span><span>&nbsp;</span><span class="keyword control new java"><span>new</span></span><span>&nbsp;</span><span class="storage type java"><span>LinkedList</span></span><span class="punctuation bracket angle java"><span>&lt;</span><span>&gt;</span></span><span class="punctuation bracket round java"><span>(</span><span>)</span></span><span class="punctuation terminator java"><span>;</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword control java"><span>for</span></span><span>&nbsp;</span><span class="punctuation bracket round java"><span>(</span></span><span class="storage type java"><span>List</span></span><span class="punctuation bracket angle java"><span>&lt;</span></span><span class="storage type generic java"><span>String</span></span><span class="punctuation bracket angle java"><span>&gt;</span></span><span>&nbsp;l&nbsp;</span><span class="keyword control ternary java"><span>:</span></span><span>&nbsp;results</span><span class="punctuation bracket round java"><span>)</span></span><span>&nbsp;</span><span class="punctuation section block begin bracket curly java"><span>{</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="storage type java"><span>Iterator</span></span><span class="punctuation bracket angle java"><span>&lt;</span></span><span class="storage type generic java"><span>String</span></span><span class="punctuation bracket angle java"><span>&gt;</span></span><span>&nbsp;it&nbsp;</span><span class="keyword operator assignment java"><span>=</span></span><span>&nbsp;</span><span class="variable other object java"><span>l</span></span><span class="meta method-call java"><span class="punctuation separator period java"><span>.</span></span><span class="entity name function java"><span>iterator</span></span><span class="punctuation definition parameters begin bracket round java"><span>(</span></span><span class="punctuation definition parameters end bracket round java"><span>)</span></span></span><span class="punctuation terminator java"><span>;</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="storage type java"><span>StringBuilder</span></span><span>&nbsp;builder&nbsp;</span><span class="keyword operator assignment java"><span>=</span></span><span>&nbsp;</span><span class="keyword control new java"><span>new</span></span><span>&nbsp;</span><span class="storage type java"><span>StringBuilder</span></span><span class="punctuation bracket round java"><span>(</span><span>)</span></span><span class="punctuation terminator java"><span>;</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword control java"><span>while</span></span><span class="punctuation bracket round java"><span>(</span></span><span class="variable other object java"><span>it</span></span><span class="meta method-call java"><span class="punctuation separator period java"><span>.</span></span><span class="entity name function java"><span>hasNext</span></span><span class="punctuation definition parameters begin bracket round java"><span>(</span></span><span class="punctuation definition parameters end bracket round java"><span>)</span></span></span><span class="punctuation bracket round java"><span>)</span></span><span>&nbsp;</span><span class="punctuation section block begin bracket curly java"><span>{</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="variable other object java"><span>builder</span></span><span class="meta method-call java"><span class="punctuation separator period java"><span>.</span></span><span class="entity name function java"><span>append</span></span><span class="punctuation definition parameters begin bracket round java"><span>(</span></span><span class="variable other object java"><span>it</span></span><span class="meta method-call java"><span class="punctuation separator period java"><span>.</span></span><span class="entity name function java"><span>next</span></span><span class="punctuation definition parameters begin bracket round java"><span>(</span></span><span class="punctuation definition parameters end bracket round java"><span>)</span></span></span><span class="punctuation definition parameters end bracket round java"><span>)</span></span></span><span class="punctuation terminator java"><span>;</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword control java"><span>if</span></span><span>&nbsp;</span><span class="punctuation bracket round java"><span>(</span></span><span class="variable other object java"><span>it</span></span><span class="meta method-call java"><span class="punctuation separator period java"><span>.</span></span><span class="entity name function java"><span>hasNext</span></span><span class="punctuation definition parameters begin bracket round java"><span>(</span></span><span class="punctuation definition parameters end bracket round java"><span>)</span></span></span><span class="punctuation bracket round java"><span>)</span></span><span>&nbsp;</span><span class="punctuation section block begin bracket curly java"><span>{</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="variable other object java"><span>builder</span></span><span class="meta method-call java"><span class="punctuation separator period java"><span>.</span></span><span class="entity name function java"><span>append</span></span><span class="punctuation definition parameters begin bracket round java"><span>(</span></span><span class="string quoted single java"><span class="punctuation definition string begin java"><span>&#39;</span></span><span>|</span><span class="punctuation definition string end java"><span>&#39;</span></span></span><span class="punctuation definition parameters end bracket round java"><span>)</span></span></span><span class="punctuation terminator java"><span>;</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="punctuation section block end bracket curly java"><span>}</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="punctuation section block end bracket curly java"><span>}</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="variable other object java"><span>result</span></span><span class="meta method-call java"><span class="punctuation separator period java"><span>.</span></span><span class="entity name function java"><span>add</span></span><span class="punctuation definition parameters begin bracket round java"><span>(</span></span><span class="variable other object java"><span>builder</span></span><span class="meta method-call java"><span class="punctuation separator period java"><span>.</span></span><span class="entity name function java"><span>toString</span></span><span class="punctuation definition parameters begin bracket round java"><span>(</span></span><span class="punctuation definition parameters end bracket round java"><span>)</span></span></span><span class="punctuation definition parameters end bracket round java"><span>)</span></span></span><span class="punctuation terminator java"><span>;</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="punctuation section block end bracket curly java"><span>}</span></span></span></div><div class="line"><span class="source java"><span>&nbsp;</span></span></div><div class="line"><span class="source java"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword control java"><span>return</span></span><span>&nbsp;</span><span class="variable other object java"><span>result</span></span><span class="meta method-call java"><span class="punctuation separator period java"><span>.</span></span><span class="entity name function java"><span>toArray</span></span><span class="punctuation definition parameters begin bracket round java"><span>(</span></span><span class="keyword control new java"><span>new</span></span><span>&nbsp;</span><span class="storage type java"><span>String</span></span><span class="punctuation bracket square java"><span>[</span></span><span class="variable other object java"><span>result</span></span><span class="meta method-call java"><span class="punctuation separator period java"><span>.</span></span><span class="entity name function java"><span>size</span></span><span class="punctuation definition parameters begin bracket round java"><span>(</span></span><span class="punctuation definition parameters end bracket round java"><span>)</span></span></span><span class="punctuation bracket square java"><span>]</span></span><span class="punctuation definition parameters end bracket round java"><span>)</span></span></span><span class="punctuation terminator java"><span>;</span></span></span></div><div class="line"><span class="source java"><span class="punctuation section block end bracket curly java"><span>}</span></span></span></div></pre>
+ </body>  </html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html> <html> <head> <title>index</title> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">  <style> .markdown-preview-enhanced pre, .markdown-preview-enhanced .host { color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); }
+<!DOCTYPE html> <html> <head> <title>system</title> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">  <style> .markdown-preview-enhanced pre, .markdown-preview-enhanced .host { color: rgb(171, 178, 191); background-color: rgb(40, 44, 52); }
 .markdown-preview-enhanced pre .line.cursor-line, .markdown-preview-enhanced .host .line.cursor-line { background-color: rgba(153, 187, 255, 0.0392157); }
 .markdown-preview-enhanced pre .invisible, .markdown-preview-enhanced .host .invisible { color: rgb(171, 178, 191); }
 .markdown-preview-enhanced pre .cursor, .markdown-preview-enhanced .host .cursor { border-left: 2px solid rgb(82, 139, 255); }
@@ -1032,21 +1032,304 @@ div.mermaidTooltip {
   pointer-events: none;
   z-index: 100;
 }
- </style> <link rel="stylesheet" href="file:////Users/jchun/.atom/packages/markdown-preview-enhanced/node_modules/katex/dist/katex.min.css">  </head> <body class="markdown-preview-enhanced "   > <h1 class="sync-line" data-line="0" id="interview-prep-notes">Interview Prep Notes</h1>
-<p class="sync-line" data-line="2">Notes for technical interviewing</p>
-<h2 class="sync-line" data-line="4" id="behavioral">Behavioral</h2>
-<h2 class="sync-line" data-line="6" id="technical">Technical</h2>
+ </style> <link rel="stylesheet" href="file:////Users/jchun/.atom/packages/markdown-preview-enhanced/node_modules/katex/dist/katex.min.css">  </head> <body class="markdown-preview-enhanced "   > <h3 class="sync-line" data-line="0" id="messaging">Messaging</h3>
 <ul>
-<li><p class="sync-line" data-line="7">Linked Lists
+<li><p class="sync-line" data-line="1">Loosely coupling subsystems
 <ul>
-<li><p class="sync-line" data-line="8"><del><a href="technical/linked-lists/cheatsheet.html">Cheatsheet</a></del> (<del><a href="technical/linked-lists/cheatsheet.pdf">PDF</a></del>)</p></li>
-<li><p class="sync-line" data-line="9"><a href="technical/linked-lists/questions.html">Questions</a> (<a href="technical/linked-lists/questions.pdf">PDF</a>)</p></li>
+<li><p class="sync-line" data-line="2">Async</p></li>
+<li><p class="sync-line" data-line="3">Decouple, from developments. Agree on interface, don’t care about impl</p></li>
+<li><p class="sync-line" data-line="4">messages consumed by substribers</p></li>
+<li><p class="sync-line" data-line="5">created by one or more producers</p></li>
+<li><p class="sync-line" data-line="6">organized into topics</p></li>
+<li><p class="sync-line" data-line="7">processed by brokers (server doing message processing)</p></li>
+<li><p class="sync-line" data-line="8">usually persistent over short term</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="9">Problems
+<ul>
+<li><p class="sync-line" data-line="10">Topic gets too big for one computer?</p></li>
+<li><p class="sync-line" data-line="11">One computer is not reliable enough?</p></li>
+<li><p class="sync-line" data-line="12">Reliability gurantees?</p></li>
 </ul></p></li>
 </ul>
-<p class="sync-line" data-line="11"><a href="scratch.html">Scratch</a><br>
-<a href="scalable-systems/notes.html">Scalable</a></p>
-<p class="sync-line" data-line="14"><a href="companies/facebook/facebook.html">Facebook</a><br>
-<a href="companies/facebook/questions.html">Facebook Questions</a><br>
-<a href="companies/facebook/system.html">Facebook System Design</a></p>
-<p class="sync-line" data-line="18"><a href="general.html">General Coding</a></p>
+<h3 class="sync-line" data-line="14" id="consistent-hashing">Consistent Hashing</h3>
+<ul>
+<li><p class="sync-line" data-line="15">Hash ring
+<ul>
+<li><p class="sync-line" data-line="16">hash keys to nodes around a ring</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="17">Replication peers of node</p></li>
+<li><p class="sync-line" data-line="18">Consistency (Eventual consistency)
+<ul>
+<li><p class="sync-line" data-line="19">R (nodes ack when read) + W (nodes ack when updated)&gt; N (replicas) (Gurantee to see most consistent val)</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="20">Why use this type of DB? e.g. cassandra
+<ul>
+<li><p class="sync-line" data-line="21">Scale</p></li>
+<li><p class="sync-line" data-line="22">Transactional data (data that changes a lot)</p></li>
+<li><p class="sync-line" data-line="23">Always on (redundancy)</p></li>
+</ul></p></li>
+</ul>
+<h3 class="sync-line" data-line="25" id="kafka">Kafka</h3>
+<ul>
+<li><p class="sync-line" data-line="26">Distributed MQ</p></li>
+<li><p class="sync-line" data-line="27">Horizontall scalable, fault tolerant</p></li>
+<li><p class="sync-line" data-line="28">Durable, Fast</p></li>
+<li><p class="sync-line" data-line="29">definitions
+<ul>
+<li><p class="sync-line" data-line="30">Msg: immutable array of bytes</p></li>
+<li><p class="sync-line" data-line="31">topic: feed of messages</p></li>
+<li><p class="sync-line" data-line="32">producer: process publishes mesg to a topic</p></li>
+<li><p class="sync-line" data-line="33">consumer: consumer single thread consume from a topic</p></li>
+<li><p class="sync-line" data-line="34">broker: msg q server</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="35">Topic partitioning
+<ul>
+<li><p class="sync-line" data-line="36">Scaling strategy via producers</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="37">ZK:
+<ul>
+<li><p class="sync-line" data-line="38">Required</p></li>
+<li><p class="sync-line" data-line="39">producers use it to find partitions and replication information</p></li>
+<li><p class="sync-line" data-line="40">consumers use it to track message indices</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="41">Replication
+<ul>
+<li><p class="sync-line" data-line="42">Brokers can fail</p></li>
+<li><p class="sync-line" data-line="43">configurable in-sync replica sets</p></li>
+<li><p class="sync-line" data-line="44">one leader, n-1 followers</p></li>
+<li><p class="sync-line" data-line="45">only leader communicates with clients</p></li>
+<li><p class="sync-line" data-line="46">when the leader fails, a new leader is elected</p></li>
+</ul></p></li>
+</ul>
+<h3 class="sync-line" data-line="48" id="mapreduce">MapReduce</h3>
+<ul>
+<li><p class="sync-line" data-line="49">All computation in two functions. Map and Reduce</p></li>
+<li><p class="sync-line" data-line="50">Keep data mostly where it is</p></li>
+<li><p class="sync-line" data-line="51">Move compute to data</p></li>
+<li><p class="sync-line" data-line="52">Computes
+<ul>
+<li><p class="sync-line" data-line="53">Mapper
+<ul>
+<li><p class="sync-line" data-line="54">(K,V) =&gt; Mapper =&gt; [(K,V), (K,V)…]</p></li>
+<li><p class="sync-line" data-line="55">[(K,V), (K,V)] =&gt; Shuffle (optimization, can move data around) group by=&gt; [K, [V, V …]]</p></li>
+<li><p class="sync-line" data-line="56">[K, [V, V…]] =&gt; Reducer =&gt; [(K,V),(K,V)…]</p></li>
+</ul></p></li>
+</ul></p></li>
+</ul>
+<h3 class="sync-line" data-line="58" id="lambda-architecture">Lambda Architecture</h3>
+<ul>
+<li><p class="sync-line" data-line="59">High rate of events</p></li>
+<li><p class="sync-line" data-line="60">Must store, must interpret</p></li>
+<li><p class="sync-line" data-line="61">imperfect answer, fast</p></li>
+<li><p class="sync-line" data-line="62">right answer, slowly</p></li>
+<li><p class="sync-line" data-line="63">incoming events sends events to :
+<ul>
+<li><p class="sync-line" data-line="64">long-term storage. batch processing. slow, accurate</p></li>
+<li><p class="sync-line" data-line="65">temporary queuing, stream processing. fast wrong. append only Q.</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="66">System input is an event stream</p></li>
+<li><p class="sync-line" data-line="67">events are immutable</p></li>
+<li><p class="sync-line" data-line="68">batch and stream processing are functional</p></li>
+<li><p class="sync-line" data-line="69">fast no sql store accurate computes view.</p></li>
+</ul>
+<h3 class="sync-line" data-line="72" id="zookeeper">Zookeeper</h3>
+<ul>
+<li><p class="sync-line" data-line="73">Centralized service</p>
+<ul>
+<li><p class="sync-line" data-line="74">Naming</p></li>
+<li><p class="sync-line" data-line="75">Configuration</p></li>
+<li><p class="sync-line" data-line="76">Synchronization</p></li>
+</ul></li>
+<li><p class="sync-line" data-line="77">Used by:</p>
+<ul>
+<li><p class="sync-line" data-line="78">Kafka</p></li>
+<li><p class="sync-line" data-line="79">Storm</p></li>
+</ul></li>
+<li><p class="sync-line" data-line="80">Traits</p>
+<ul>
+<li><p class="sync-line" data-line="81">HA</p></li>
+<li><p class="sync-line" data-line="82">Manages shared state</p></li>
+<li><p class="sync-line" data-line="83">Transaction control</p></li>
+<li><p class="sync-line" data-line="84">Lock management</p></li>
+<li><p class="sync-line" data-line="85">Data model looks like a file system</p></li>
+<li><p class="sync-line" data-line="86">Written in java</p></li>
+<li><p class="sync-line" data-line="87">Custom protocol</p></li>
+<li><p class="sync-line" data-line="88">In-memory (on-heap)</p></li>
+<li><p class="sync-line" data-line="89">Metadata service</p></li>
+<li><p class="sync-line" data-line="90">Minimum of 3 nodes for production (need quorum)</p></li>
+<li><p class="sync-line" data-line="91">All nodes participate (master node) zk cluster/ensemble</p></li>
+<li><p class="sync-line" data-line="92">Zab
+<ul>
+<li><p class="sync-line" data-line="93">Designed for primary backup systems rather than paxos (state machine replication)</p></li>
+</ul></p></li>
+</ul></li>
+<li><p class="sync-line" data-line="95">Ensemble</p>
+<ul>
+<li><p class="sync-line" data-line="96">Clients can reads from any nodes (follower or master)</p></li>
+<li><p class="sync-line" data-line="97">Clients can write to any node (but follower forwards it to master)</p></li>
+<li><p class="sync-line" data-line="98">Master ensures that a write quorum is achieved</p></li>
+<li><p class="sync-line" data-line="99">Eventually consistent (don’t see writes immediately as they happen)</p></li>
+<li><p class="sync-line" data-line="100">Gurantee that write are seen in order they occur</p></li>
+</ul></li>
+<li><p class="sync-line" data-line="101">ZNode</p>
+<ul>
+<li><p class="sync-line" data-line="102">Vals (basically a byte array, timestamped, indepedent non-inherited ACLs)</p></li>
+<li><p class="sync-line" data-line="103">Versioned nodes</p></li>
+<li><p class="sync-line" data-line="104">Zero or more child ZNodes</p></li>
+<li><p class="sync-line" data-line="105">Persistent or session-ephemeral
+<ul>
+<li><p class="sync-line" data-line="106">Sessions are connection between client and node in ensemble</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="107">Counting znodes</p></li>
+</ul></li>
+<li><p class="sync-line" data-line="108">Watches</p>
+<ul>
+<li><p class="sync-line" data-line="109">One time trigger on Znode values or children</p></li>
+<li><p class="sync-line" data-line="110">Async</p></li>
+<li><p class="sync-line" data-line="111">Guranteed to be seen by client before the data change</p></li>
+</ul></li>
+<li><p class="sync-line" data-line="112">ACLs</p>
+<ul>
+<li><p class="sync-line" data-line="113">Apply to individual ZNodes (not children)</p></li>
+<li><p class="sync-line" data-line="114">ZNode contains a list of IDs
+<ul>
+<li><p class="sync-line" data-line="115">world, auth, digest, ip</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="116">Ids have permissions
+<ul>
+<li><p class="sync-line" data-line="117">Create, read, write, delete, admin</p></li>
+</ul></p></li>
+</ul></li>
+<li><p class="sync-line" data-line="118">Leader Election (Elected a single master)</p>
+<ul>
+<li><p class="sync-line" data-line="119">Create a znode called leader-election</p></li>
+<li><p class="sync-line" data-line="120">All candidates create ephemeral sequential children</p></li>
+<li><p class="sync-line" data-line="121">The children of leader-election with the smallest seq number is leader</p></li>
+<li><p class="sync-line" data-line="122">Watch znode with the next smallest sequence number for call to master</p></li>
+</ul></li>
+<li><p class="sync-line" data-line="123">Distributed Locks</p>
+<ul>
+<li><p class="sync-line" data-line="124">Create a znode called resource</p></li>
+<li><p class="sync-line" data-line="125">Create ephemeral node called resource/hostname-{i}</p></li>
+<li><p class="sync-line" data-line="126">Examine children of resource; I hold the lock if my ID is lowest</p></li>
+<li><p class="sync-line" data-line="127">Otherwise watch the id preceeding mine</p></li>
+<li><p class="sync-line" data-line="128">Upon update event, I hold the lock</p></li>
+<li><p class="sync-line" data-line="129">To release the lock, delete my ephemeral node</p></li>
+</ul></li>
+</ul>
+<h3 class="sync-line" data-line="131" id="facebook-chat">Facebook Chat</h3>
+<ul>
+<li><p class="sync-line" data-line="132">Challenges
+<ul>
+<li><p class="sync-line" data-line="133">How does sunchronous messagin work on the web</p></li>
+<li><p class="sync-line" data-line="134">“Presence” is hard to scale… Think about this!</p></li>
+<li><p class="sync-line" data-line="135">Need a system to queue and deliver messages</p></li>
+<li><p class="sync-line" data-line="136">Millions of connections, mostly idle</p></li>
+<li><p class="sync-line" data-line="137">Need logging, at least between page loads</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="138">System overview
+<ul>
+<li><p class="sync-line" data-line="139">Components
+<ul>
+<li><p class="sync-line" data-line="140">Browsers</p></li>
+<li><p class="sync-line" data-line="141">Web tier</p></li>
+<li><p class="sync-line" data-line="142">Chat logger</p></li>
+<li><p class="sync-line" data-line="143">Presence</p></li>
+<li><p class="sync-line" data-line="144">Channel Clusters</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="145">UI
+<ul>
+<li><p class="sync-line" data-line="146">Chat bar at bottom of each facebook page</p></li>
+<li><p class="sync-line" data-line="147">Client side JS, server side PHP</p></li>
+<li><p class="sync-line" data-line="148">transport errors, browser differences</p></li>
+<li><p class="sync-line" data-line="149">regular ajax for sending messages, fetching convo history</p></li>
+<li><p class="sync-line" data-line="150">periodic ajax polling for list of online friends</p></li>
+<li><p class="sync-line" data-line="151">ajax long-polling for messages (comet)</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="152">Backend
+<ul>
+<li><p class="sync-line" data-line="153">Discrete resp for each service</p></li>
+<li><p class="sync-line" data-line="154">Channel: message queueing and delivery
+<ul>
+<li><p class="sync-line" data-line="155">Queue messages in each user’s channel</p></li>
+<li><p class="sync-line" data-line="156">deliver messages as responses to long-polling http requests
+<ul>
+<li><p class="sync-line" data-line="157">Long polling - client sends req to server. server hold connection till has data</p></li>
+<li><p class="sync-line" data-line="158">Unreliable connection, long polling reestablish? Failover?</p></li>
+</ul></p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="159">Presence: Aggregate online info in memory (pull based)</p></li>
+<li><p class="sync-line" data-line="160">Chatlogger: stores conversations between page loads</p></li>
+<li><p class="sync-line" data-line="161">web tier: server vanilla web requests</p></li>
+</ul></p></li>
+</ul></p></li>
+</ul>
+<h3 class="sync-line" data-line="163" id="facebook-timeline">Facebook Timeline</h3>
+<ul>
+<li><p class="sync-line" data-line="164"><a href="https://www.facebook.com/note.php?note_id=10150468255628920">https://www.facebook.com/note.php?note_id=10150468255628920</a></p></li>
+<li><p class="sync-line" data-line="165">Complete scrollable version of your life story</p></li>
+<li><p class="sync-line" data-line="166">Takeaways
+<ul>
+<li><p class="sync-line" data-line="167">Leverage infrastructure rather than build something new.</p></li>
+<li><p class="sync-line" data-line="168">Denormalize. Format data the way you need to use it.
+<ul>
+<li><p class="sync-line" data-line="169">Denormalzation, creating special purpose objects instead of distributed rows that must be joined, minimizes random IO by reducing the number of trips to the database. Caching can often get around the need for denormalization, but given the amount of timeline data and how much of it is cold, that is it will rarely be viewed, caching everything isn’t a good design.</p></li>
+<li><p class="sync-line" data-line="170">Timeline decides the order to display data by calculating a rank based on metadata. The denormalization process brought all that metadata together in a format that meant ranking could be done in a few IOs and streamed efficiently from the database using a primary key range query</p></li>
+<li><p class="sync-line" data-line="171">Timeline is like a datamart in a data warehouse. Data must be slurped up from dozens of different systems, cleaned, merged, and reformatted into a new canonical format. Facebook of course did this in a Facebook-like way. They created a custom data conversion language, they deployed hundreds of MySQL servers to extract the data out of “legacy” systems as fast as possible, they deployed flash storage to speed up joins, they created a parallelizing query proxy, and they standardized on the Multifeed data format for future flexibility.</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="172">Keep different types of caches
+<ul>
+<li><p class="sync-line" data-line="173">Short term cache.  A timeline of recent activity is frequently invalidated because it is changing all the time as you perform actions through your life. This cache is an in RAM row cache inside InnoDB that uses the Flashcache kernel driver to expand the OS cache onto a flash device.</p></li>
+<li><p class="sync-line" data-line="174">Long term cache. A query cache is kept in memcached. The results of large queries, like the ranking of all your activities in 2010, can be efficiently cached since they will rarely be invalidated.</p></li>
+</ul></p></li>
+<li><p class="sync-line" data-line="175">Run operations locally. The Timeline Aggregator (geographically clustering nearby check-ins, ranking status updates, etc) runs on each database so it can max out the disks. Only data that needs to be displayed is sent over the network.</p></li>
+<li><p class="sync-line" data-line="176">Parallelize development. The short 6 month development time was partly a product of the quality infrastructure, but of also running significant development activities in parallel. The development team was split into design, front-end engineering, infrastructure engineering, and data migrations. In parallel they built: UI prototypes on a test backend, production UI on a simulated backend, the scalable backend, the denormalization framework, the data warehouse, and simulated load testing.</p></li>
+</ul></p></li>
+</ul>
+<h3 class="sync-line" data-line="178" id="picture-sharing-system">Picture sharing system</h3>
+<ul>
+<li><p class="sync-line" data-line="179"><a href="http://highscalability.com/blog/2011/12/6/instagram-architecture-14-million-users-terabytes-of-photos.html">http://highscalability.com/blog/2011/12/6/instagram-architecture-14-million-users-terabytes-of-photos.html</a></p></li>
+<li><p class="sync-line" data-line="180"><a href="https://engineering.instagram.com/what-powers-instagram-hundreds-of-instances-dozens-of-technologies-adf2e22da2ad#.saasbsbrc">https://engineering.instagram.com/what-powers-instagram-hundreds-of-instances-dozens-of-technologies-adf2e22da2ad#.saasbsbrc</a></p></li>
+<li><p class="sync-line" data-line="181"><a href="http://highscalability.com/flickr-architecture">http://highscalability.com/flickr-architecture</a></p></li>
+</ul>
+<h3 class="sync-line" data-line="183" id="trending-topic-system">Trending Topic System</h3>
+<ul>
+<li><p class="sync-line" data-line="184"><a href="https://snikolov.wordpress.com/2012/11/14/early-detection-of-twitter-trends/">https://snikolov.wordpress.com/2012/11/14/early-detection-of-twitter-trends/</a></p></li>
+<li><p class="sync-line" data-line="185"><a href="http://www.michael-noll.com/blog/2013/01/18/implementing-real-time-trending-topics-in-storm/">http://www.michael-noll.com/blog/2013/01/18/implementing-real-time-trending-topics-in-storm/</a></p></li>
+</ul>
+<h3 class="sync-line" data-line="187" id="activity-feed">Activity Feed</h3>
+<ul>
+<li><p class="sync-line" data-line="188"><a href="http://www.slideshare.net/danmckinley/etsy-activity-feeds-architecture">http://www.slideshare.net/danmckinley/etsy-activity-feeds-architecture</a></p></li>
+<li><p class="sync-line" data-line="189"><a href="https://www.quora.com/Activity-Streams/What-are-the-scaling-issues-to-keep-in-mind-while-developing-a-social-network-feed">https://www.quora.com/Activity-Streams/What-are-the-scaling-issues-to-keep-in-mind-while-developing-a-social-network-feed</a></p></li>
+<li><p class="sync-line" data-line="190"><a href="https://www.quora.com/What-are-the-best-practices-for-building-something-like-a-News-Feed">https://www.quora.com/What-are-the-best-practices-for-building-something-like-a-News-Feed</a></p></li>
+</ul>
+<p class="sync-line" data-line="192">READ: <a href="https://github.com/checkcheckzz/system-design-interview">https://github.com/checkcheckzz/system-design-interview</a></p>
+<h3 class="sync-line" data-line="194" id="facebook-news-feed">Facebook News Feed</h3>
+<ul>
+<li><p class="sync-line" data-line="195"><a href="https://www.quora.com/What-are-the-best-practices-for-building-something-like-a-News-Feed">https://www.quora.com/What-are-the-best-practices-for-building-something-like-a-News-Feed</a></p></li>
+<li><p class="sync-line" data-line="196"><a href="https://www.quora.com/Activity-Streams/What-are-the-scaling-issues-to-keep-in-mind-while-developing-a-social-network-feed">https://www.quora.com/Activity-Streams/What-are-the-scaling-issues-to-keep-in-mind-while-developing-a-social-network-feed</a></p></li>
+<li><p class="sync-line" data-line="197"><a href="http://www.slideshare.net/danmckinley/etsy-activity-feeds-architecture">http://www.slideshare.net/danmckinley/etsy-activity-feeds-architecture</a></p></li>
+</ul>
+<h3 class="sync-line" data-line="199" id="baqend">Baqend</h3>
+<ul>
+<li><p class="sync-line" data-line="200"><a href="https://medium.baqend.com/building-a-shop-with-sub-second-page-loads-lessons-learned-4bb1be3ed07#.ervmer4y2">https://medium.baqend.com/building-a-shop-with-sub-second-page-loads-lessons-learned-4bb1be3ed07#.ervmer4y2</a></p></li>
+<li><p class="sync-line" data-line="201"><a href="https://medium.baqend.com/talk-cache-sketches-using-bloom-filters-and-web-caching-against-slow-load-times-a1ef60df2616#.cgw0clhcs">https://medium.baqend.com/talk-cache-sketches-using-bloom-filters-and-web-caching-against-slow-load-times-a1ef60df2616#.cgw0clhcs</a></p></li>
+<li><p class="sync-line" data-line="202"><a href="https://medium.baqend.com/announcing-availability-of-baqends-unique-client-caching-technology-dbd9b026dc20#.s63cscdq9">https://medium.baqend.com/announcing-availability-of-baqends-unique-client-caching-technology-dbd9b026dc20#.s63cscdq9</a></p></li>
+<li><p class="sync-line" data-line="203"><a href="https://medium.baqend.com/nosql-databases-a-survey-and-decision-guidance-ea7823a822d#.jmqsd36lb">https://medium.baqend.com/nosql-databases-a-survey-and-decision-guidance-ea7823a822d#.jmqsd36lb</a></p></li>
+<li><p class="sync-line" data-line="204"><a href="https://medium.baqend.com/bringing-web-performance-to-the-next-level-an-overview-of-baqend-be3521bc2faf#.9n5u6cgsk">https://medium.baqend.com/bringing-web-performance-to-the-next-level-an-overview-of-baqend-be3521bc2faf#.9n5u6cgsk</a></p></li>
+</ul>
+<h3 class="sync-line" data-line="206" id="triplebyte">Triplebyte</h3>
+<ul>
+<li><p class="sync-line" data-line="207"><a href="https://quip.com/q41AA3OmoZbC">https://quip.com/q41AA3OmoZbC</a></p></li>
+<li><p class="sync-line" data-line="208"><a href="http://20bits.com/article/interview-questions-database-indexes">http://20bits.com/article/interview-questions-database-indexes</a></p></li>
+<li><p class="sync-line" data-line="209"><a href="https://stackoverflow.com/questions/795031/how-do-composite-indexes-work">https://stackoverflow.com/questions/795031/how-do-composite-indexes-work</a></p></li>
+<li><p class="sync-line" data-line="210"><a href="http://postgresguide.com/performance/explain.html">http://postgresguide.com/performance/explain.html</a></p></li>
+<li><p class="sync-line" data-line="211"><a href="https://www.tutorialspoint.com/http/">https://www.tutorialspoint.com/http/</a></p></li>
+<li><p class="sync-line" data-line="212"><a href="https://www.digitalocean.com/community/tutorials/web-caching-basics-terminology-http-headers-and-caching-strategies">https://www.digitalocean.com/community/tutorials/web-caching-basics-terminology-http-headers-and-caching-strategies</a></p></li>
+</ul>
+<h3 class="sync-line" data-line="214" id="react">React</h3>
+<ul>
+<li><p class="sync-line" data-line="215"><a href="http://blog.andrewray.me/webpack-when-to-use-and-why/">http://blog.andrewray.me/webpack-when-to-use-and-why/</a></p></li>
+<li><p class="sync-line" data-line="216"><a href="https://tech.knewton.com/blog/2016/11/redux-at-knewton/">https://tech.knewton.com/blog/2016/11/redux-at-knewton/</a></p></li>
+</ul>
  </body>  </html>

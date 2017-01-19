@@ -3240,3 +3240,1632 @@ class Solution {
   }
 }
 ```
+
+```
+Evernote questions
+```
+
+```
+Linkedin questions
+* Min window substring
+* print tree by height
+* design bitly
+* communication
+```
+
+```
+// This is the text editor interface.
+// Anything you type or change here will be seen by the other person in real time.
+
+/*
+https://en.wikipedia.org/wiki/Mandelbrot_set#/media/File:Mandel_zoom_00_mandelbrot_set.jpg
+
+
+
+
+
+                            y
+                            ^
+                            |
+                            | +2
+                            |
+                            |
+                            |     * C (1,1)
+                            |
+            -2              |            +2
+---------------------------------------------------> x
+                            |
+                            |
+                            |
+                            |
+                            | -2
+                            |
+                            |
+
+
+void printMandelbrot(int n); // n is the number of points from -2 to 2
+-2, 0, 2
+-2 -1, 0, 1, 2
+
+Z_0 = (0,0)
+Z_n = Z_(n-1)^2 + C
+Z and C are points? what does it mean to square a point? and add coordinates?
+
+Z_10 = ? ....
+Z_2 = Z_1^2 + C = (1,1)^2 + (1,1) = (0,2) + (1,1) = (1,3)
+Z_1 = Z_0^2 + C = (0,0)^2 + (1,1) = (0,0) + (1,1) = (1,1)
+Z_0 = (0,0)
+
+(a,b)^2 = (a^2 - b^2, 2*a*b)
+
+
+n >= 3, range from -2 to 2
+* or space --> after calculating the Z-function(10), is my point further than 2 from the origin?
+if yes --> *
+else ----> " "
+
+
+// High level
+// Calculate distance from origin
+// Z(10) cacheable (constant?)
+// loop over all points in -2 to 2 (with n^2 points)
+
+*/
+
+import java.util.*;
+
+
+class Solution {
+    private static class Coordinate {
+        double x, y;
+        Coordinate(double x, double y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public String toString() {
+            return "C(" + x + ", " + y + ")";
+        }
+    }
+
+    private static double metricDistanceFromOrigin(Coordinate c) {
+        return c.x * c.x + c.y * c.y;
+    }
+
+    private static Coordinate squareCoordinate(Coordinate c) {
+        double x = (c.x * c.x) - (c.y * c.y); // overflow?
+        double y = 2 * c.x * c.y;
+        return new Coordinate(x, y);
+    }
+
+    private static Coordinate addCoordinate(Coordinate c1, Coordinate c2) {
+        return new Coordinate(c1.x + c2.x, c1.y + c2.y);
+    }
+
+    private static Coordinate zFunction(Coordinate c, int n) {
+        // n = 10
+        if (n == 0) {
+            return new Coordinate(0, 0);
+        }
+
+        return addCoordinate(squareCoordinate(zFunction(c, n-1)), c);
+    }
+
+    /**
+     * Return a list of points between low and high for a given n
+     */
+    private static List<List<Coordinate>> getCoordinates(double n, int low, int high) {
+
+        List<List<Coordinate>> result = new ArrayList<>();
+        double step = (high - low) / (n - 1);
+        for (double i = high; i >= low; i -= step) {
+            List<Coordinate> line = new ArrayList<>();
+            for (double j = low; j <= high; j += step) {
+                line.add(new Coordinate(i, j));
+            }
+            result.add(line);
+        }
+        return result;
+    }
+
+    private static void print(double n, int low, int high) {
+
+        int zNum = 10;
+
+        List<List<Coordinate>> coordinates = getCoordinates(n, low, high);
+        for (List<Coordinate> lineCoordinates : coordinates) {
+            StringBuilder builder = new StringBuilder();
+            int i = low; // add spaces between lines?
+            for (Coordinate c : lineCoordinates) {
+
+                //System.out.println(c);
+                double x = c.x;
+                double y = c.y;
+
+                // Add spaces between i and y
+                for (int j = 0; j < y - i; j += ?) {
+                    builder.append(" ");
+                }
+
+                // New zFunction coordinate
+                Coordinate newZCoord = zFunction(c, zNum);
+
+                if (metricDistanceFromOrigin(newZCoord) > 4) {
+                    builder.append("*");
+                } else {
+                    builder.append(" ");
+                }
+            }
+            System.out.println(builder.toString());
+        }
+    }
+
+    public static void main(String[] args) {
+        //Coordinate c = new Coordinate(1, 1);
+        //System.out.println(zFunction(c, 1));
+
+        //List<Coordinate> coordinates = getCoordinates(3, -2, 2);
+        print(50, -2, 2);
+
+
+    }
+}
+```
+
+```
+Dropbox AAR
+* dont opitimize.... prematurely... always think of it...
+* positive signs, but not good enough
+* candidates get hung up on optimizations?
+* revisit in a year....
+```
+
+
+```
+2) Given a BST, count the total number of subtrees where all of the nodes have values within the range [x(inclusive),y(inclusive)].
+```
+
+```
+Addepar 2nd Phone
+bit.me
+
+* Shorten a URL: https://www.reddit.com/ -> https://bit.me/asdf1
+* Given a short URL, redirect to the original: https://bit.me/asdf1 - > https://www.reddit.com/
+
+// What are our req?
+// - How long should a short url be?
+//        - memorable (6-9 chars, numbers, upper case, lower case)
+// - How long do short urls need to exist?
+//        - forever (as far as we can tell)
+
+
+(10 + 26 + 26) ^ 6 roughly 57 * 10e9
+
+
+Data Model:
+
+ShortUrl | Long Url
+each row 4kb,
+
+Use Flow:
+- Critical path is GET, redirect to be fast (99%) (Read heavy)
+- Other path (POST), slower
+
+Architecture:
+GET
+Cache of {ShortUrl | Long Url} in memory
+
+Async Update
+DB {ShortUrl | UserId | XX:00 | XX:01 | XX:02 ....}
+
+GET:
+    Go to cache, for given short url, return 3xx to long url
+    Make async call to DB to increment count for current timestamp bucket
+
+POST:
+    ? Generation random 6 character string.
+        - Retry X number of times (Alerting if you hit X - n times)
+        - Pregenerate ids and distribute them (do this, + complexity, coordination)
+    Add entry to cache, for given short url, long url pair
+
+DEL:
+    Return 404. Remove entry from cache.
+    Frontend removes from DB (persisted), adds shortUrl to evicted bucket
+
+Cache:
+    {14:00 => [shortUrls that were evicted]}
+    {14:01 => [shortUrls that were evicted]}
+
+Frontends(in memory cache) -> Distributed Cache (Redis clustered) -> Persistence (Data Warehouse)
+
+
+User stories:
+- As a user, I want to know how many clicks my links got on 1 minute, 1 hour
+```
+
+```
+Asana onsite
+... see asana.java
+```
+
+```
+Stripe phone interview
+see ~/stripe/interview
+
+
+    // https://gist.github.com/ChimeraCoder/1906326162eb88742952
+    // https://gist.github.com/antifuchs/dd5344b60693dd1d073b
+
+    /*
+    You're running a pool of servers where the servers are numbered sequentially starting from 1.
+     Over time, any given server might explode, in which case its server number is made available
+      for reuse. When a new server is launched, it should be given the lowest available number.
+
+Write a function which, given the list of currently allocated server numbers, returns the number
+of the next server to allocate. In addition, you should demonstrate your approach to testing that
+ your function is correct. You may choose to use an existing testing library for your language if
+  you choose, or you may write your own process if you prefer.
+
+For example, your function should behave something like the following:
+
+  >> next_server_number([5, 3, 1])
+  2
+  >> next_server_number([5, 4, 1, 2])
+  3
+  >> next_server_number([3, 2, 1])
+  4
+  >> next_server_number([2, 3])
+  1
+  >> next_server_number([])
+  1
+     */
+
+
+    /*
+    Scratch:
+
+    [5,3,1] => [1,3,5]
+    i = 1
+    expect = 2
+
+    [2,3]
+    i = 0
+    expect = 1
+    a[i] != 1 => return 1
+
+    return 1 if empty
+
+
+    n is size of list of server numbers
+    Runtime: O(nlogn) + O(n)
+    Space: O(1)
+
+     */
+
+    /**
+     * Assumptions:
+     * No duplicates in arr
+     * All numbers above 1
+     */
+    private static int getNextAvailableNumber(ArrayList<Integer> arr) {
+
+        if (arr == null) {
+            throw new IllegalArgumentException();
+        }
+
+        // Sort it
+        Collections.sort(arr);
+
+        int expected = 1;
+        for (int i = 0; i < arr.size(); i++) {
+
+            if (arr.get(i) != expected) {
+                return expected;
+            }
+
+            // Move i up until we reach a new value
+            while (i < arr.size() - 1 && expected == arr.get(i + 1)) {
+                i++;
+            }
+            expected++;
+        }
+        return expected;
+    }
+
+
+    /*
+    Server names consist of an alphabetic host type (e.g. "apibox") concatenated with the server
+    number, with server numbers allocated as before (so "apibox1", "apibox2", etc. are valid
+    hostnames).
+
+Write a name tracking class with two operations, allocate(host_type) and deallocate(hostname).
+The former should reserve and return the next available hostname, while the latter should release
+ that hostname back into the pool.
+
+For example:
+
+>> tracker = Tracker.new()
+>> tracker.allocate("apibox")
+"apibox1"
+>> tracker.allocate("apibox")
+"apibox2"
+>> tracker.deallocate("apibox1")
+nil
+>> tracker.allocate("apibox")
+"apibox1"
+>> tracker.allocate("sitebox")
+"sitebox1"
+     */
+
+
+    /**
+     * Requirements:
+     *  - Namespace by host type
+     *  - Unique numeric ids per host type (allocated by increasing available numbers)
+     */
+
+
+    //allocated: [1,2,3,4,5]
+    // deallocate: 3
+        // allocate -> 3
+
+        // Ordering of deallocated ids
+        // quick generation of new ids
+
+    private static class ServernameAlloc {
+
+        Map<String, ArrayList<Integer>> nameSpaceMap = new HashMap<String, ArrayList<Integer>>();
+
+
+        String allocate(String hostType) {
+            if (!nameSpaceMap.containsKey(hostType)) {
+                nameSpaceMap.put(hostType, new ArrayList<Integer>());
+            }
+            int nextNum = getNextAvailableNumber(nameSpaceMap.get(hostType)); // get next available num
+            nameSpaceMap.get(hostType).add(nextNum); // claim id as allocated
+            return hostType + nextNum;
+        }
+
+        void deallocate(String hostname) {
+            // Split hostname into numeric part
+
+            // iTerate through string , can be own method
+            int i = 0;
+            while (!Character.isDigit(hostname.charAt(i))) {
+                i++;
+            }
+            String hostType = hostname.substring(0, i);
+            Integer numId = Integer.valueOf(hostname.substring(i));
+
+
+            if (!nameSpaceMap.containsKey(hostType)) {
+                throw new IllegalArgumentException();
+            }
+            nameSpaceMap.get(hostType).remove(numId);
+        }
+
+
+    }
+
+
+    public static void main(String[] args) {
+
+
+        String hostType = "Asd";
+        ServernameAlloc alloc = new ServernameAlloc();
+        String id = alloc.allocate(hostType);
+        System.out.println(id);
+        String id2 = alloc.allocate(hostType);
+        System.out.println(id2);
+        String id3 = alloc.allocate(hostType);
+        System.out.println(id3);
+
+        alloc.deallocate(id2);
+
+        String id4 = alloc.allocate(hostType);
+        System.out.println(id4); // equala id2
+
+
+        // Tests
+        /*
+        System.out.println(getNextAvailableNumber(new int[]{5, 3, 2, 2, 1})); // 4
+        System.out.println(getNextAvailableNumber(new int[]{2, 2, 1, 1, 1})); // 3
+        System.out.println(getNextAvailableNumber(new int[]{1, 1, 1})); // 2
+        System.out.println(getNextAvailableNumber(new int[]{2, 2, 2})); // 1
+
+        System.out.println(getNextAvailableNumber(new int[]{5, 3, 1})); // 2
+        System.out.println(getNextAvailableNumber(new int[]{5, 4, 1, 2})); // 3
+        System.out.println(getNextAvailableNumber(new int[]{3, 2, 1})); // 4
+        System.out.println(getNextAvailableNumber(new int[]{2, 3})); // 1
+        System.out.println(getNextAvailableNumber(new int[]{})); // 1
+        System.out.println(getNextAvailableNumber(null)); // exception
+        */
+    }
+```    
+
+
+```
+1)You are given two non-empty zero-indexed arrays A and B consisting of N integers. Arrays A and B represent N voracious fish in a river, ordered downstream along the flow of the river.
+The fish are numbered from 0 to N − 1. If P and Q are two fish and P < Q, then fish P is initially upstream of fish Q. Initially, each fish has a unique position.
+Fish number P is represented by A[P] and B[P]. Array A contains the sizes of the fish. All its elements are unique. Array B contains the directions of the fish. It contains only 0s and/or 1s, where:
+1) 0 represents a fish flowing upstream,
+2) 1 represents a fish flowing downstream.
+
+If two fish move in opposite directions and there are no other (living) fish between them, they will eventually meet each other. Then only one fish can stay alive − the larger fish eats the smaller one. More precisely, we say that two fish P and Q meet each other when P < Q, B[P] = 1 and B[Q] = 0, and there are no living fish between them. After they meet:
+1) If A[P] > A[Q] then P eats Q, and P will still be flowing downstream,
+2) If A[Q] > A[P] then Q eats P, and Q will still be flowing upstream.
+We assume that all the fish are flowing at the same speed. That is, fish moving in the same direction never meet. The goal is to calculate the number of fish that will stay alive.
+For example, consider arrays A and B such that:
+  A[0] = 3    B[0] = 0 (up)
+  A[1] = 4    B[1] = 1 (down)
+  A[2] = 2    B[2] = 1 (down)
+  A[3] = 5    B[3] = 0 (up)
+  A[4] = 5    B[4] = 0 (up)
+
+Initially all the fish are alive and all except fish number 1 are moving upstream. Fish number 1 meets fish number 2 and eats it, then it meets fish number 3 and eats it too. Finally, it meets fish number 4 and is eaten by it. The remaining two fish, number 0 and 4, never meet and therefore stay alive.
+Write a function that, given two non-empty zero-indexed arrays A and B consisting of N integers, returns the number of fish that will stay alive.
+For example, given the arrays shown above, the function should return 2, as explained above.
+```
+
+```
+1) Given a 2D matrix of 1s and 0s. Print all unique rows.
+Input:
+    {0, 1, 0, 0, 1}
+    {1, 0, 1, 1, 0}
+    {0, 1, 0, 0, 1}
+    {1, 1, 1, 0, 0}
+Output:
+    0 1 0 0 1
+    1 0 1 1 0
+    1 1 1 0 0
+```
+
+```
+1) Given a sequence of integers. Compute the total number of Binary Search Trees that could be
+generated from these numbers.
+{3,2,5,1,0}
+```
+
+```
+
+
+// price of wine,
+N is num of year
+Many bottles, array of ints
+Sell all the wine, sell exactly one bottle of wine
+
+Int[] prices of multiple bottles of wines in year one
+If a bottle of wine costs p in year one it costs np in year n.
+
+{8, 9, 1, 2, 3, 7}
+
+1001 1 1 1  1000 1000 1000
+1001 1 1 1  1000 1000
+1001 1 1 1  1000
+1001 1 1 1  
+
+1001 1 1 1 1000 1000 {}
+
+{} 1 1 1 1000 1000 1000
+
+
+T(i, j) = v[i] * y when i == j
+T(i, j) = Math.max(T(i + 1, j, y + 1) + v[i] * y, T(i, j - 1, y + 1) + v[j] * y)
+
+Implied parameter v. v is constant.
+
+Y = f(i, j, N)    N = v.length
+
+
+
+
+
+```
+
+```
+Battleship
+2-players
+
+game has 2 phases
+1. 24x24 grid plase 5 ships [2.3.3.4.5]
+2. other 24x24 player1 fires
+3. player2 register hit or miss
+4. player2 goto 2.
+5. ends with 1 player destroying all the other players ships
+
+
+User flows:
+    Sign in / Auth
+    Find game
+        Match making
+    Start game
+        Phase 1: Place ships
+        Phase 2: Turn based, hit different locations
+    Scoreboard
+
+
+Server API :
+    Match Making:
+        POST /searchGame :
+            - Clients poll against this endpoint when searching for a game.
+            - POST with userId
+            - Return 200 with gameId if matched. Else return 404. Backoff?
+            - On 200, a game object is created server side
+
+    Playing game:
+        POST /startGame:
+            - POST with userId, gameId, [coordinates...]
+
+        GET /game/{gameId}/started
+            - Returns 200 if game is started (both players have submitted their locations)
+            - Clients poll against this while waiting for a game to start
+
+        POST /game/{gameId}/move
+            - POST with coordinate that userId is firing at
+            - Return payload with hit/miss. Client notes location was fired at
+            - Server checks if location has already been hit (req is valid?)
+            - Server notes location was fired at
+
+        GET /game/{gameId}
+            - Returns game state, for synchronization
+
+Game flow:
+    Each player submits the locations of their ships
+        - gameId
+        - userId
+        - locations: [coordinates...]
+    Once both players have submitted locations, signal player1 starts
+
+    Each player:
+        Submit fired location
+            - coordinate
+        Receive reponse from server if hit / miss
+            Server notes if game over (all locations have been hit?)
+        switch player
+
+
+
+Server requirements:
+    - Store game state
+    - Retrieve game state, compute fired location response
+    - Sign up, auth
+    - Record userIds that are searching for games
+    - User history
+    - Game history
+
+Game Server:
+    - Distributed Cache
+        - Games in progress
+        K/V:
+            {gameId} : gameState (Atomic Update)
+    - (GAME) Application Servers
+    - Database
+        - Persistent storage
+            - Store game states as deltas
+
+
+Data Model:
+    Game:
+    - id                    : UUID
+        - player1Id         : UUID
+        - player2Id         : UUID
+        - player1Locations  
+
+internet
+  |
+ api server (protect against malicous/bad client)
+  |
+ load balancer (sticky)
+  |
+ game svrs ....
+   |
+   database
+```
+
+```
+2)Given an array of distinct positive numbers, the task is to calculate the number of subsets (or subsequences) from the array such that each subset contains consecutive numbers.
+Input :  arr[] = {100, 56, 5, 5, 6, 102, 58, 101, 57, 7, 103, 59}
+Output : 3
+{5, 6, 7}, { 56, 57, 58, 59}, {100, 101, 102, 103}
+are 3 subset in which numbers are consecutive.
+
+
+// Naive
+// Sort it O(nlogn)
+// Iterate through and bin them up
+
+// Ideally, linear time
+// Bin them directly
+
+
+{100, 56, 5, 5, 7, 6}
+
+{100}
+{56}
+{5,5,7,6}
+
+map: {
+    100 -> 100(s=1)
+    56 -> 56
+    5 -> 5(s=4)
+    5 -> 5(s=4)
+    7 -> 5(s=4)
+    6 -> 5(s=4)
+}
+
+private static class UFNode {
+    int val;
+    int size;
+    int rank;
+    UFNode(int val) {
+        this.val = val;
+        this.size = 1;
+        this.rank = 1;
+    }
+}
+
+{100, 56, 5, 5, 7, 6}
+
+map: {
+    100 -> 100
+    56 -> 56
+    5 -> 6(s=4, r=3)
+    5 -> 6(s=4, r=3)
+    7 -> 6(s=2, r=2)
+    6 -> 6(s=4, r=3)
+}
+
+valMap: {
+    100: Node(100)
+    56: Node(56)
+    5: Node(5)
+    7: Node(7)
+    6: Node(6)
+}
+
+http://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/
+
+
+private static class UnionFind {
+
+    Map<UFNode, UFNode> map = new HashMap<>();
+    Map<Integer, UFNode> valMap = new HashMap<>();
+
+    void union(UFNode n1, UFNode n2) {
+
+        UFNode r1 = find(n1);
+        UFNode r2 = find(n2);
+
+        if (r1.rank < r2.rank) {
+            // Merge r1 into r2
+            map.put(r1, r2);
+            r2.size += r1;
+        } else if (r1.rank > r2.rank) {
+            // Merge r2 into r1
+            map.put(r2, r1);
+            r1.size += r2;
+        } else {
+            // Merge r1 into r2
+            map.put(r1, r2);
+            r2.size += r1;
+            r2.rank++;
+        }
+    }
+
+    UFNode find(UFNode n) {
+        if (map.get(n).equals(n)) {
+            return n;
+        }
+
+        UFNode root = find(map.get(n));
+        map.put(n, root);
+        return root;
+    }
+
+    void insert(int val) {
+
+        UFNode node = new UFNode(val);
+        map.put(node, node);
+
+        if (valMap.containsKey(val)) {
+            union(node, valMap.get(val));
+        }
+
+        if (valMap.containsKey(val + 1)) {
+            union(node, valMap.get(val + 1));
+        }
+
+        if (valMap.containsKey(val - 1)) {
+            union(node, valMap.get(val - 1));
+        }
+
+        if (!valMap.containsKey(val)) {
+            valMap.put(val, node);
+        }
+    }
+
+    int numRoots() {
+        int count = 0;
+        for (UFNode n : map.keysSet()) {
+            if (n.size > 1 && map.get(n).equals(n)) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+private static int numSubsets(int[] arr) {
+
+    // Validate
+    if (arr == null) {
+        throw new IllegalArgumentException();
+    }
+
+    UnionFind uf = new UnionFind();
+    for (int i = 0; i < arr.length; i++) {
+        uf.insert(arr[i]);
+    }
+
+    return uf.numRoots();
+}
+```
+
+```
+1) Given two arrays A and B with the same integers. Count the minimum number of swaps needed to make array B the same as array A.
+Ex:
+Input:
+arrA[] = {3, 6, 4, 8}, arrB[] = {4, 6, 8, 3}
+Output : 2
+
+A: [3,6,4,8]
+B: [4,6,8,3]
+
+
+[3,6,4,8]
+
+mapB: {
+    3: [0]
+    6: 1
+    4: 2
+    8: 3
+}
+
+A: [3,6,4,8,4]
+B: [4,6,8,3,4]
+
+mapB: {
+    4: [4...., 3]
+    6: [1]
+    8: [2]
+    3: [0]
+}
+
+A: [3,6,4,8,4]
+B: [3,6,8,4,4]
+
+
+Runtime: O(n)
+Space: O(n)
+// Build map: O(n)
+// Iterate through array and swap: O(n)
+
+Ans: 2
+A: [3,6,4,8,4]
+B: [4,6,8,3,4]
+
+count: 2
+mapB: {
+    4: [4,2]
+    6: [1]
+    8: [3]
+    3: [0]        
+}
+A: [3,6,4,8,4]
+B: [3,6,4,8,4]
+j = 3
+a[i] = 4
+b[i] = 8
+a[j] = 8
+b[j] = 4
+
+A = [2,2,-7]
+B = [2,2,-7]
+
+mapA = {}
+count = 1
+
+mapB: {
+    2: [0,1]
+    -7: [2]
+}
+count = 1
+i = 1
+misplaceIndex = 2
+a[i] = 2
+b[i] = -7
+j = 2
+a[j] = -7
+b[j] = 2
+
+
+private static int minSwaps(int[] a, int[] b) {
+
+    // Validate
+    if (a == null || b == null) {
+        throw new IllegalArgumentException();
+    }
+
+    int count = 0;
+    Map<Integer, Set<Integer>> mapB = new HashMap<>();
+    for (int i = 0; i < b.length; i++) {
+        if (!mapB.containsKey(b[i])) {
+            mapB.put(b[i], new HashSet<>());
+        }
+        mapB.get(b[i]).add(i);
+    }
+
+
+    for (int i = 0; i < a.length; i++) {
+        if (b[i] != a[i]) {
+
+            // Find first element that is not in place
+            int misplacedIndex = 0;
+            for (int j : mapB.get(a[i])) {
+                if (b[j] != a[j]) {
+                    misplacedIndex = j;
+                }
+            }
+
+            swap(b, misplacedIndex, i);
+
+            mapB.get(a[i]).remove(misplacedIndex);
+            mapB.get(a[i]).add(i);
+
+            mapB.get(b[i]).add(misplacedIndex);
+            mapB.get(b[i]).remove(i);
+
+            count++;
+        }
+    }
+    return count;
+}
+
+private static void swap(int[] a, int i, int j) {
+    int tmp = a[i];
+    a[i] = a[j];
+    a[j] = tmp;
+}
+
+
+
+```
+
+```
+/*
+You are given an integer array nums and you have to return a new counts array. The counts
+array has the property where counts[i] is the number of smaller elements to the right of
+nums[i].
+
+Example:
+
+Given nums = [5, 2, 6, 1]
+
+To the right of 5 there are 2 smaller elements (2 and 1).
+To the right of 2 there is only 1 smaller element (1).
+To the right of 6 there is 1 smaller element (1).
+To the right of 1 there is 0 smaller element.
+Return the array [2, 1, 1, 0].
+ */
+
+
+public class Result{
+int idx;
+int val;
+int count;
+
+public Result(int i, int vl , int c){
+    idx = i;
+    val = vl;
+    count = c;
+}
+
+}
+public int countLess(int[] arr){
+if(arr == null || arr.length == 0){
+    throw new IllegalArgumentException();
+}
+
+Result[] r = new Result[arr.length];
+for(int i = 0; i < arr.length; i++){
+    r[i] = new Result(i,arr[i],0);
+}
+countHelp(r,0,arr.length - 1);
+//[(3,1,0)(1,2,1) (0,5,2) (2,6,1)] [2 1 1 0]
+int[] counts = new int[arr.length];
+for(int i = 0; i < r.length; i++){
+    counts[r[i].idx] = r[i].count;
+}
+return counts;
+}
+
+private void countHelp(Result[] arr, int i, int j){
+if(i == j){
+    return;
+}
+int mid = (i + j)/2;
+countHelp(arr,i, mid);
+countHelp(arr,mid + 1,j);
+return countMerge(arr,i,j);
+}
+[5, 2, 6, 1]
+
+r =[(0,5,0),(1,2,0),(2,6,0),(3,1,0)]
+[(1,2,1)(0,5,2)]      [(3,1,0)(2,6,1)]
+count = 1
+leftIdx = 2 endLeft = 1 rightIdx = 1 tmp[(3,1,0)(1,2,1) (0,5,2) (2,6,1)] tmpIdx = 3
+
+
+private int countMerge(int[] arr, int i, int j,int[] counts){
+tmp[(3,1,0)(2,6,1)]
+Result[] tmp = new int[j - i + 1];
+int leftIdx = i;
+int endLeft = (j + i)/2;
+int rightIdx = endLeft + 1;
+int tmpIdx = 0;
+int count = 0;
+while(leftIdx <= endLeft && rightIdx <= j){
+    if(arr[leftIdx].val <= arr[rightIdx].val){
+        arr[leftIdx].count += count;
+        tmp[tmpIdx++] = arr[leftIdx++];
+    }
+    else{
+        count += (arr[rightIdx].count + 1);
+        tmp[tmpIdx++] = arr[rightIdx++];
+    }
+
+}
+while(leftIdx <= endLeft){
+    arr[leftIdx].count += count;
+    tmp[tmpIdx++] = arr[leftIdx++];
+}
+while(rightIdx <= j){
+    tmp[tmpIdx++] = arr[rightIdx++];
+}
+   for(int k = 0; k< tmp.length; k++){
+       arr[i + k] = tmp[k];
+   }
+
+}
+ ```
+
+```
+2)Given an array of distinct positive numbers, the task is to calculate the number of subsets (or subsequences) from the array such that each subset contains consecutive numbers.
+Input :  arr[] = {100, 56, 5, 5, 6, 102, 58, 101, 57, 7, 103, 59}
+Output : 3
+{5, 6, 7}, { 56, 57, 58, 59}, {100, 101, 102, 103}
+are 3 subset in which numbers are consecutive.
+
+
+
+// Naive
+// Sort it O(nlogn)
+// Iterate through and bin them up
+
+// Ideally, linear time
+// Bin them directly
+
+
+{100, 56, 5, 5, 7, 6}
+
+{100}
+{56}
+{5,5,7,6}
+
+map: {
+    100 -> 100(s=1)
+    56 -> 56
+    5 -> 5(s=4)
+    5 -> 5(s=4)
+    7 -> 5(s=4)
+    6 -> 5(s=4)
+}
+
+private static class UFNode {
+    int val;
+    int size;
+    int rank;
+    UFNode(int val) {
+        this.val = val;
+        this.size = 1;
+        this.rank = 1;
+    }
+}
+
+{100, 56, 5, 5, 7, 6}
+
+map: {
+    100 -> 100
+    56 -> 56
+    5 -> 6(s=4, r=3)
+    5 -> 6(s=4, r=3)
+    7 -> 6(s=2, r=2)
+    6 -> 6(s=4, r=3)
+}
+
+valMap: {
+    100: Node(100)
+    56: Node(56)
+    5: Node(5)
+    7: Node(7)
+    6: Node(6)
+}
+
+http://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/
+
+
+private static class UnionFind {
+
+    Map<UFNode, UFNode> map = new HashMap<>();
+    Map<Integer, UFNode> valMap = new HashMap<>();
+
+    void union(UFNode n1, UFNode n2) {
+
+        UFNode r1 = find(n1);
+        UFNode r2 = find(n2);
+
+        if (r1.rank < r2.rank) {
+            // Merge r1 into r2
+            map.put(r1, r2);
+            r2.size += r1;
+        } else if (r1.rank > r2.rank) {
+            // Merge r2 into r1
+            map.put(r2, r1);
+            r1.size += r2;
+        } else {
+            // Merge r1 into r2
+            map.put(r1, r2);
+            r2.size += r1;
+            r2.rank++;
+        }
+    }
+
+    UFNode find(UFNode n) {
+        if (map.get(n).equals(n)) {
+            return n;
+        }
+
+        UFNode root = find(map.get(n));
+        map.put(n, root);
+        return root;
+    }
+
+    void insert(int val) {
+
+        UFNode node = new UFNode(val);
+        map.put(node, node);
+
+        if (valMap.containsKey(val)) {
+            union(node, valMap.get(val));
+        }
+
+        if (valMap.containsKey(val + 1)) {
+            union(node, valMap.get(val + 1));
+        }
+
+        if (valMap.containsKey(val - 1)) {
+            union(node, valMap.get(val - 1));
+        }
+
+        if (!valMap.containsKey(val)) {
+            valMap.put(val, node);
+        }
+    }
+
+    int numRoots() {
+        int count = 0;
+        for (UFNode n : map.keysSet()) {
+            if (n.size > 1 && map.get(n).equals(n)) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
+
+private static int numSubsets(int[] arr) {
+
+    // Validate
+    if (arr == null) {
+        throw new IllegalArgumentException();
+    }
+
+    UnionFind uf = new UnionFind();
+    for (int i = 0; i < arr.length; i++) {
+        uf.insert(arr[i]);
+    }
+
+    return uf.numRoots();
+}
+
+```    
+
+```
+/* package whatever; // don't place package name! */
+
+/**
+Given a binary tree and a target node. Find the nearest leaf to the target node.
+Assume you have pointers to the parent nodes and there are no duplicates.
+
+Ex:
+                28
+             9(n) siblingDistance = 3     
+           4*  15    
+
+
+
+If t =4 return 5
+public Node closest(Node rt,Node t)
+**/
+import java.io.*;
+
+class myCode {
+
+    // 1. Find closest leaf in target's subtree
+    // 2. Check sibling's closest leaf (result should be +2 distance from target)
+    // 3. While candidate distance is greater than parent iteration + 2, continue searching
+
+    private static class Node {
+        int val;
+        Node left, right, parent;
+        Node(int val) {
+            this.val = val;
+        }
+    }
+
+    private static class Result {
+        int height;
+        Node leaf;
+        Result(int height, Node n) {
+            this.height = height;
+            this.leaf = n;
+        }
+
+        @Override
+        public String toString() {
+            return "R(" + height + ", " + leaf.val + ")";
+        }
+    }
+
+    private static Result checkSiblingClosestLeaf(Node n) {
+        Node sibling;
+        Node parent = n.parent;
+
+        if (parent == null) {
+            return new Result(0, null);
+        }
+
+        if (parent.left.equals(n)) {
+            sibling = parent.right;
+        } else {
+            sibling = parent.left;            
+        }
+
+        if (sibling != null) {
+            return nearestLeafInSubtree(sibling);
+        } else {
+            return new Result(0, null);
+        }
+    }
+
+    private static Result nearestLeaf(Node target) {
+
+        Result candidate = nearestLeafInSubtree(target);
+        Result siblingCandidate = checkSiblingClosestLeaf(target);
+
+        int siblingDist = 2;
+        int closestDistance = candidate.height;
+
+        Node n = target;
+        while (siblingDist < closestDistance) {
+
+            if (n.parent == null) {
+                break;
+            }
+
+            // Update n to parent (move up a level)
+            n = n.parent;
+            siblingDist++;
+
+            siblingCandidate = checkSiblingClosestLeaf(n);
+            if (siblingCandidate.height + siblingDist < closestDistance) {
+                candidate = siblingCandidate;
+                closestDistance = siblingCandidate.height + siblingDist;
+            }
+        }
+        return candidate;
+
+    }
+
+    private static Result nearestLeafInSubtree(Node target) {
+        if (target == null) {
+            return new Result(0, null);
+        }
+
+        Result left = nearestLeafInSubtree(target.left);
+        Result right = nearestLeafInSubtree(target.right);
+
+
+        // This node is a leaf
+        if (left.height == 0 && right.height == 0) {
+            return new Result(1, target);
+        }
+
+        if (left.height == 0) {
+            return new Result(right.height + 1, right.leaf);
+        } else if (right.height == 0) {
+            return new Result(left.height + 1, left.leaf);
+        }
+        // Take the smaller result, and return it
+        if (left.height < right.height) {
+            return new Result(left.height + 1, left.leaf);
+        } else {
+            return new Result(right.height + 1, right.leaf);
+        }
+    }
+
+    /*
+                28
+             9      13
+           4*    6
+         3  5      10
+       1     
+
+    */
+
+    public static void main (String[] args) throws java.lang.Exception {
+
+        Node root = new Node(28);
+        Node r = new Node(13);
+        Node l = new Node(9);
+        Node ll = new Node(4);
+        Node lll = new Node(3);
+        Node llll = new Node(1);
+
+        Node lr = new Node(6);
+        Node lrr = new Node(10);
+
+        Node llr = new Node(5);
+
+        root.right = r;
+        root.left = l;
+
+        l.right = lr;
+        lr.right = lrr;
+
+        l.left = ll;
+        ll.left = lll;
+        lll.left = llll;
+
+        ll.right = llr;
+
+        System.out.println(nearestLeafInSubtree(l));
+
+
+    }
+
+
+}
+```
+
+```
+IK interview
+
+// Question 1: Given a set of positive integers divide it into two pieces with smallest difference in the sum of the numbers.
+
+
+Set: [1,2,4,5]
+Sorted Set: []
+
+Partition A: [18,6,4,1]
+Partition B: [17,16]
+
+Set: [1,4,6,16,17,18]
+Partition A:
+Partition B:
+O(2^n)
+
+Set: [16,17,18]
+Smallest Diff: [16,17] [18]
+Next Elem: 6
+Two choices:
+    [16,17,6] [18]
+    [16,17] [18,6]
+    Choose choice that gives me smaller difference
+Smallest diff: [6,16,17,18] => [16,17] [18,6]
+
+Base case:
+    [18] => [18]
+    [17,18] => [17] [18]
+
+i is index into set
+p is partition number
+divideTwoPartitions(i,p) = {
+    num[i] if i == 0 and p == 0
+    min(Math.abs(divideTwoPartitions[i, 0] + num[i] - divideTwoPartitions[i, 1]),
+        Math.abs(divideTwoPartitions[i, 1] + num[i] - divideTwoPartitions[i, 0])) otherwise
+}
+
+Set: [1,4,6,16,17,18]
+
+p  i ->
+0:[1][0][3][]
+1:[0][3][0][]
+
+[1,4]
+[6]
+
+
+0 + 6 - 3 = 3
+3 + 6 - 0 = 9
+
+
+arr:
+p0: [18,6,4,1]
+p1: [17,16]
+sum0: 28
+sum1: 33
+
+
+private static int divideIntoTwo(int[] arr) {
+
+    if (arr == null) {
+        throw new IllegalArgumentException();
+    }
+
+    Arrays.sort(arr);
+
+    int[] p0 = new int[arr.length];
+    int[] p1 = new int[arr.length];
+
+    int sum0 = 0;
+    int sum1 = 0;
+    int p0Idx = 0;
+    int p1Idx = 0;
+    for (int i = arr.length - 1; i >= 0; i--) {
+        if (sum0 == sum1) {
+            sum0 += arr[i];
+            p0[p0Idx] = arr[i];
+            p0Idx++;
+        } else if (sum0 < sum1) {
+            sum0 += arr[i];
+            p0[p0Idx] = arr[i];
+            p0Idx++;
+        } else {
+            sum1 += arr[i];
+            p1[p1Idx] = arr[i];
+            p1Idx++;
+        }
+    }
+
+    System.out.println(Arrays.toString(p0));
+    System.out.println(Arrays.toString(p1));
+    return Math.abs(sum0 - sum1);
+}
+
+
+
+
+//////////////////////////////////
+Banking system: 1 type of account, one user has just one account
+Three functionalities: Balance, Deposit, Withdraw
+Each account has some overdraft limit.
+You can go in negative balance up to your overdraft limit
+/////////////////////////////////
+
+-----------------------
+Requirements:
+- Strong consistency
+
+-----------------
+Data Model:
+
+Account:
+    userId   user
+    String   name
+    long     overdraftLimit
+
+Balance:
+    userId   user
+    long     Amount
+
+------------------------
+
+User Flow:
+Deposit:
+    1. User login / auth
+    2. Check (and update lock) existing balance
+    3. Increment balance for user
+    4. Release update lock
+
+Withdraw:
+    1. User login / auth
+    2. Check (and update lock) existing balance
+    3. If balance - withdrawAmt < (-1 * user.overdraftLimit), reject (relase lock)
+    4. Decrement balance for user
+    5. Release update lock
+
+------------------------
+
+Data structures:
+
+Map:
+    Key: userId
+    Val: Account + Balance Obj
+
+Val: {
+    userId   user
+    String   name
+    long     overdraftLimit
+    long     amount
+}
+
+------------------------
+
+private static class Account {
+    ReadWriteLock lock;
+    UserId userId;
+    String name;
+    long overdraftLimit;
+    long amount;
+}
+
+private static class Bank {
+
+    ConcurrentHashMap<UserId, Account> accounts = new ConcurrentHashMap<>();
+
+    // Assume userId exists, and is authenticated
+    void deposit(UserId userId, long amount) {
+
+        Account acct = accounts.get(userId);        
+        try {
+            acct.getWriteLock();
+            acct.amount += amount;
+        } finally {
+            acct.releaseWriteLock();
+        }
+    }
+
+    // Assume userId exists, and is authenticated
+    void withdraw(UserId userId, long withdrawAmount) {
+
+        Account acct = accounts.get(userId);        
+        try {
+            acct.getWriteLock();
+            if (acct.balance - withdrawAmount < -acct.overdraftLimit) {
+                throw new IllegalStateException("User is overdrafted");
+            }            
+            acct.amount -= withdrawAmount;
+        } finally {
+            acct.releaseWriteLock();
+        }
+    }
+
+    Account getAccount(UserId userId) {
+        return accounts.get(userId);
+    }
+
+}
+
+```
+
+```
+import java.util.ArrayList;
+/**
+Consider the following series:
+A = 1
+B = A*2 + 2
+C = B * 2 + 3
+D = C * 2 + 4
+and so on...
+
+f(n) = f(n-1) * 2 + n
+
+Given a String (ex.GREP), the score of this String is the sum
+of the numbers corresponding to all letters in the String(G + R + E + P).
+Write a program that given a score (that would fit into a
+standard 32-bit integer), finds the length of the shortest
+string of letters which evaluates to it.
+
+
+Example:
+Input- 2
+Output - 2 (The score 2 can be formed with the string "AA")
+
+A => 1
+B => 4
+C => 11
+D => 26
+
+2->2(AA)
+4->1(B)
+
+12 - 11 = 1(
+
+Upper case A -> Z 26
+
+10
+10 BBAAA
+
+formula: f(k) = f(k-1) * 2 + k
+         f(0) = 0
+         f(1) = f(0) * 2 + 1
+
+n: 10
+k:
+f(k): 11
+
+k = 2
+f(k): 4
+
+length = 2
+10 / 4 => 2 (this maps to 2Bs)
+n = 2
+
+while n > f(k):
+    k++;
+
+log(n) times to find k
+
+n         (logn)
+n/2       
+n/4
+n/8
+....
+
+n/2 < f(k) < n < f(k+1) < 2n
+n = n - f(k)
+worst case: newN = n - f(k) = n - (n/2 + 1) ~= n/2
+
+log(logn))
+
+
+
+**/
+// To execute Java, please define "static void main" on a class named Solution.
+
+class Solution {
+
+  private static int fn(int k) {
+    if (k == 0) {
+        return 0;
+    }
+    return fn(k-1) * 2 + k;
+  }
+
+  private static int minLengthEncoding(int n) {
+    int k = 26;
+    int encoding = fn(k); //1
+    //n = 12
+    while(encoding > n){
+        k--;
+      encoding = fn(k);
+    }
+    while (n > encoding) {//k = 2
+        k++;
+        encoding = fn(k);
+    }
+
+    int length = n / encoding;
+    int remainder = n - (length * encoding);
+    return length + remainder == 0 ? 0 : minLengthEncoding(remainder);
+    //https://careercup.com/question?id=5652128598065152
+  }
+
+
+  public static void main(String[] args) {
+    System.out.println(minLengthEncoding(11));
+  }
+}
+```
